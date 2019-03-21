@@ -79,10 +79,10 @@
 You can use <code>modtool.jar -h</code> for help.
 </aside>
 <h2 id='solar-inverter-protocol'>Solar Inverter Protocol</h2>
-<p>此方式使用於太陽能逆變器，支援以下廠牌太陽能逆變器: 茂迪、固德威、Kaco、Kstar</p>
+<p>此方式使用於太陽能逆變器，支援以下廠牌太陽能逆變器： 茂迪、固德威、Kaco、Kstar</p>
 
 <ul>
-<li><p>透過 FTP/WinSCP 方式將檔案放至 iENBox 中，預設位置為 /media/sd/home/cht</p></li>
+<li><p>透過 FTP/WinSCP 方式將檔案放至 iENBox 中，預設位置： /media/sd/home/cht</p></li>
 <li><p>cp /media/sd/home/cht/modInverter.jar /opt/ienbox/core/bin</p></li>
 </ul>
 

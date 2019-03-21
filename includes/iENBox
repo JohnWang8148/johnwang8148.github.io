@@ -66,7 +66,7 @@
 
 <aside class="notice">
 當 Raw Data 檔名從 <code>current</code> 轉換成 <code>fetch</code> ，表示正在上拋回 iEN 平台
-</aside>
+</aside>  
 <h3 id='webservice-maintenance'>WebService Maintenance</h3>
 <p>設定頁面： http://localhost:4511，localhost預設如下：</p>
 
@@ -171,23 +171,7 @@
     ping 168.95.1.1
     <span class="c">### Check MQTT connection</span>
     telnet mqtt.ien.net.tw 1883
-</code></pre>
-<ul>
-<li>iENBox 更改 MQTT Server IP</li>
-</ul>
-
-<p>Maintenance -&gt; IENBOX_MQTT_URL_FORMAT</p>
-
-<p><img src="/images/iENBox/mqtt.png" alt="Image" /></p>
-
-<ul>
-<li>Litebox 更改 MQTT Server IP</li>
-</ul>
-
-<p>Box Configuration -&gt; MQTT -&gt; MQTT Hostname</p>
-
-<p><img src="/images/Litebox/mqtt.png" alt="Image" /></p>
-<h3 id='log'>相關同步異常 Log</h3>
+</code></pre><h3 id='log'>相關同步異常 Log</h3>
 <ul>
 <li>StatusCode: 400，Required Control Server ID doesn&#39;t match my ID.</li>
 </ul>
@@ -205,10 +189,8 @@
 <p>原因為可能 iENBox 版本過舊，導致 iENCentre 新版本新增的功能有所衝突</p>
 <h2 id='ienbox-litebox'>iENBox / Litebox 定時重開機</h2>
 <p>若設備有不穩定情況，建議將 iENBox / Litebox 作定時重開機動作，再觀察幾天看看</p>
-
-<p>或者安裝硬體定時器，來改善穩定性</p>
 <h3 id='webservice-maintenance-2'>WebService Maintenance</h3>
-<p>根據案場環境，設定不同重開機條件，iENBox 能<code>定時重啟</code>，Litebox 則是 <code>MQTT 斷線重啟</code> 或 <code>開機間隔多久後重啟</code></p>
+<p>根據案場環境，設定不同重開機條件，iENBox 能定時重啟，Litebox 則是 MQTT 斷線</p>
 
 <p>iENBox：</p>
 
@@ -216,13 +198,11 @@
 <li>Maintenance</li>
 </ul>
 
-<p>IENBOX_REBOOT_ENABLED： <font color=BLUE>TRUE</font></p>
+<p>IENBOX_REBOOT_ENABLED： TRUE</p>
 
-<p>IENBOX_REBOOT_CRON (重啟時間)： <font color=BLUE>* 0 0 * * ? *</font>，表示為 00:00:00 作重開機動作</p>
+<p>IENBOX_REBOOT_CRON (重啟時間)： * 0 0 * * ? *，表示為 00:00:00 作重開機動作</p>
 
 <p>前三個分別表示： 秒、分、時，<code>*</code> 表示任意值，若只要在 01:XX 重啟，可以表示為 * * 1 * * ? *</p>
-
-<p>有興趣可以參考 <a href="http://linux.vbird.org/linux_basic/0430cron.php" target="_blank">鳥哥 crontab</a> 用法</p>
 
 <p><img src="/images/iENBox/reboot.png" alt="Image" /></p>
 
@@ -244,15 +224,11 @@
 <li>維運選單 -&gt; 障礙查測 -&gt; 控制伺服器維運 -&gt; MQTT 遠端維運 -&gt; 選擇 Box Configuration</li>
 </ul>
 
-<p>設定相關重開機參數，同 WebService Maintenance 設定方式</p>
-
-<p>iENBox：</p>
+<p>設定相關重開機條件</p>
 
 <p><img src="/images/iENBox/rebootiENBox.png" alt="Image" /></p>
 
-<p>Litebox：</p>
-
-<p><img src="/images/Litebox/rebootLitebox.png" alt="Image" /></p>
+<p><img src="/images/Litebox/rebootLiteBox.png" alt="Image" /></p>
 <h2 id='ienbox-ienbox-ienbox-protocol'>iENBox 納管其他 iENBox (iENBox Protocol)</h2>
 <p>參考： <a href="https://drive.google.com/open?id=13BCjy7DBRGroE2oNK_OkXACVogV9Tpq_" target="_blank">iEN-Box 納管其他 iEN-Box</a></p>
 
@@ -263,7 +239,25 @@
 </ol>
 
 <p><img src="/images/iENBox/addIENBox.png" alt="Image" /></p>
-<h2 id='ienbox-3'>iENBox 升級包及更新</h2>
+<h2 id='ienbox-3'>iENBox 事件單消化不良</h2>
+<p>此為簡訊有延遲告警的情形，原因是 iENBox 產生過多的事件單，以致於事件單需要排隊消化</p>
+
+<p>然而，當事件單成功上傳至平台才會發簡訊告警，但這個事件單先前就已經產生出來，並在 iENBox 排隊</p>
+
+<p>導致從 iEN 平台查看事件單維護，有簡訊延遲告警的問題</p>
+<h3 id='566e624dcd'>解決辦法</h3>
+<ol>
+<li><p>新增一台 iENBox 控制伺服器，重新設定點位、告警等條件，再觀察看看</p></li>
+<li><p>調整下列事件單參數，並再觀察看看</p></li>
+</ol>
+
+<ul>
+<li><p>SEND_NOTIFY_BUFFER_SIZE： 事件單保存空間，可以理解該參數值越小，表示排隊隊伍越短</p></li>
+<li><p>SEND_NOTIFY_TIMER_INTERVAL： 間隔多久發送事件單，預設是每分鐘送一次 <font color=red>(註: 一次上傳一筆事件單)</font></p></li>
+</ul>
+
+<p><img src="/images/iENBox/event.png" alt="Image" /></p>
+<h2 id='ienbox-4'>iENBox 升級包及更新</h2>
 <p>講述 iENBox 升級包如何產生，以及如何將案場的 iENBox 做更新</p>
 <h3 id='a2f059e7a9'>升級包製作</h3>
 <p>此升級包需要 iENBox 版號對應才能更新，例如： iENBox_1.24.15-1.26.3</p>
@@ -294,7 +288,7 @@
 
 <aside class="notice">
 <code>iENBox 可升級版號</code>為更新後的 iENBox 版本
-</aside> 
+</aside>  
 
 <ul>
 <li>一鍵更新： 將升級包放置同個資料夾，修改 <code>upgrade.bat</code> 跟 <code>runcmd.bat</code></li>
