@@ -245,13 +245,16 @@
                     <a href="#ienbox-litebox" class="toc-h2 toc-link" data-title="iENBox / Litebox 定時重開機">iENBox / Litebox 定時重開機</a>
                   </li>
                   <li>
+                    <a href="#ienbox-3" class="toc-h2 toc-link" data-title="iENBox 設備點位無法讀取">iENBox 設備點位無法讀取</a>
+                  </li>
+                  <li>
                     <a href="#ienbox-ienbox-ienbox-protocol" class="toc-h2 toc-link" data-title="iENBox 納管其他 iENBox (iENBox Protocol)">iENBox 納管其他 iENBox (iENBox Protocol)</a>
                   </li>
                   <li>
-                    <a href="#ienbox-3" class="toc-h2 toc-link" data-title="iENBox 事件單消化不良">iENBox 事件單消化不良</a>
+                    <a href="#ienbox-5" class="toc-h2 toc-link" data-title="iENBox 事件單消化不良">iENBox 事件單消化不良</a>
                   </li>
                   <li>
-                    <a href="#ienbox-4" class="toc-h2 toc-link" data-title="iENBox 升級包及更新">iENBox 升級包及更新</a>
+                    <a href="#ienbox-6" class="toc-h2 toc-link" data-title="iENBox 升級包及更新">iENBox 升級包及更新</a>
                   </li>
                   <li>
                     <a href="#firmware-upgrade" class="toc-h2 toc-link" data-title="Firmware Upgrade">Firmware Upgrade</a>
@@ -309,7 +312,7 @@
             <a href="#others" class="toc-h1 toc-link" data-title="Others">Others</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#ienbox" class="toc-h2 toc-link" data-title="iENBox 服務不正常運作 (待驗證)">iENBox 服務不正常運作 <font color="red">(待驗證)</font></a>
+                    <a href="#ienbox-webservice" class="toc-h2 toc-link" data-title="iENBox WebService 服務不正常運作 (待驗證)">iENBox WebService 服務不正常運作 <font color="red">(待驗證)</font></a>
                   </li>
                   <li>
                     <a href="#litebox-mqtt" class="toc-h2 toc-link" data-title="Litebox MQTT 不穩重開機">Litebox MQTT 不穩重開機</a>
@@ -720,6 +723,24 @@ You can use <code>modInverter.jar -h</code> for help.
 <p><img src="images/iENBox/rebootiENBox.png" alt="Image" /></p>
 
 <p><img src="images/Litebox/rebootLiteBox.png" alt="Image" /></p>
+<h2 id='ienbox-3'>iENBox 設備點位無法讀取</h2>
+<p>此問題為設備通訊不穩定，可以加終端電阻，或換通訊線來改善</p>
+
+<p>另外也能透過調整 <font color=blue>timeout</font> 、 <font color=blue>polling time</font>，提升 iENBox 詢問設備的成功率/</p>
+<h3 id='iencentre'>iENCentre 設定</h3>
+<ul>
+<li><p>維運選單 -&gt; 設備管理 -&gt; 控制器管理 -&gt; 選擇控制器</p></li>
+<li><p>輪詢時間：表示為 polling time，等於 iENBox 的 <code>JAMOD_SEND_DELAY_MS</code></p></li>
+<li><p>連線逾時；表示為 timeout，等於 iENBox 的 <code>JAMOD_READ_DELAY_MS</code></p></li>
+</ul>
+
+<p>預設輪詢時間是 50ms，連線逾時是 500ms，輪詢時間建議最長到 <font color=blue>100ms ~ 200ms</font>，而連線逾時最長則是 <font color=blue>5s ~ 7s</font></p>
+
+<p><img src="images/iENBox/device.png" alt="Image" /></p>
+<h3 id='ienbox-4'>iENBox 設定</h3>
+<p>主要是調整 <code>JAMOD_SEND_DELAY_MS</code> 、 <code>JAMOD_READ_DELAY_MS</code> 這兩個參數</p>
+
+<p>這邊就針對 iENCentre 設定作說明，不再論述 iENBox，細節參考 <a href="https://hoyuisun.github.io/#ienbox-2">iENBox 環境</a> 的常用 iENBox 參數說明</p>
 <h2 id='ienbox-ienbox-ienbox-protocol'>iENBox 納管其他 iENBox (iENBox Protocol)</h2>
 <p>參考： <a href="https://drive.google.com/open?id=13BCjy7DBRGroE2oNK_OkXACVogV9Tpq_" target="_blank">iEN-Box 納管其他 iEN-Box</a></p>
 
@@ -730,7 +751,7 @@ You can use <code>modInverter.jar -h</code> for help.
 </ol>
 
 <p><img src="images/iENBox/addIENBox.png" alt="Image" /></p>
-<h2 id='ienbox-3'>iENBox 事件單消化不良</h2>
+<h2 id='ienbox-5'>iENBox 事件單消化不良</h2>
 <p>此為簡訊有延遲告警的情形，原因是 iENBox 產生過多的事件單，以致於事件單需要排隊消化</p>
 
 <p>然而，當事件單成功上傳至平台才會發簡訊告警，但這個事件單先前就已經產生出來，並在 iENBox 排隊</p>
@@ -748,7 +769,7 @@ You can use <code>modInverter.jar -h</code> for help.
 </ul>
 
 <p><img src="images/iENBox/event.png" alt="Image" /></p>
-<h2 id='ienbox-4'>iENBox 升級包及更新</h2>
+<h2 id='ienbox-6'>iENBox 升級包及更新</h2>
 <p>講述 iENBox 升級包如何產生，以及如何將案場的 iENBox 做更新</p>
 <h3 id='a2f059e7a9'>升級包製作</h3>
 <p>此升級包需要 iENBox 版號對應才能更新，例如： iENBox_1.24.15-1.26.3</p>
@@ -1094,7 +1115,7 @@ log4j.appender.ien.layout.ConversionPattern<span class="o">=[</span>%d<span clas
 <p>仍不行的話，向 TL 尋求協助幫忙</p>
 
 <p><img src="images/Log/kernel.png" alt="Image" /></p>
-<h1 id='others'>Others</h1><h2 id='ienbox'>iENBox 服務不正常運作 <font color=red>(待驗證)</font></h2>
+<h1 id='others'>Others</h1><h2 id='ienbox-webservice'>iENBox WebService 服務不正常運作 <font color=red>(待驗證)</font></h2>
 <p>iENBox 有機率性服務開啟會失敗，以致於卡在網頁都是 404 狀態，通常重開機能解決</p>
 
 <p>先前有針對此問題做改善，但仍有一定機率會發生</p>
@@ -1118,6 +1139,8 @@ log4j.appender.ien.layout.ConversionPattern<span class="o">=[</span>%d<span clas
 <p>為偵測 Litebox 是否已撥號上網，若有連線能力後，透過 <code>netstat</code> 查看 MQTT 連線狀態</p>
 
 <p>若 MQTT 連線異常，則將 Litebox 重開機，此問題為老問題，與 Litebox 硬體設備有關</p>
+
+<p>連結: <a href="http://bit.ly/2UP04DS" target="_blank">一鍵執行</a></p>
 <pre class="highlight shell tab-shell"><code>    <span class="c">#!/bin/bash</span>
     <span class="k">while</span> <span class="o">[</span> TRUE <span class="o">]</span> 
     <span class="k">do

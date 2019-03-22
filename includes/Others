@@ -1,4 +1,4 @@
-<h1 id='others'>Others</h1><h2 id='ienbox'>iENBox 服務不正常運作 <font color=red>(待驗證)</font></h2>
+<h1 id='others'>Others</h1><h2 id='ienbox-webservice'>iENBox WebService 服務不正常運作 <font color=red>(待驗證)</font></h2>
 <p>iENBox 有機率性服務開啟會失敗，以致於卡在網頁都是 404 狀態，通常重開機能解決</p>
 
 <p>先前有針對此問題做改善，但仍有一定機率會發生</p>
@@ -22,6 +22,8 @@
 <p>為偵測 Litebox 是否已撥號上網，若有連線能力後，透過 <code>netstat</code> 查看 MQTT 連線狀態</p>
 
 <p>若 MQTT 連線異常，則將 Litebox 重開機，此問題為老問題，與 Litebox 硬體設備有關</p>
+
+<p>連結: <a href="http://bit.ly/2UP04DS" target="_blank">一鍵執行</a></p>
 <pre class="highlight shell tab-shell"><code>    <span class="c">#!/bin/bash</span>
     <span class="k">while</span> <span class="o">[</span> TRUE <span class="o">]</span> 
     <span class="k">do
