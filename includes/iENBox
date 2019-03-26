@@ -137,6 +137,26 @@
 <p>確認其 iENBox 服務是否恢復運作</p>
 
 <p><img src="/images/iENBox/recover.png" alt="Image" /></p>
+<h2 id='mqtt-server'>MQTT Server 設定</h2>
+<p>當現場網路無法使用固定IP的話，例如：浮動IP、4G上網、私有網路等，都需要透過 MQTT Server 來註冊</p>
+
+<p>設定方式：</p>
+
+<ul>
+<li><p>IENBOX_MQTT_ENABLE： <strong>TRUE</strong></p></li>
+<li><p>IENBOX_MQTT_URL_FORMAT： <strong>tcp://mqtt.ien.net.tw:1883</strong></p></li>
+</ul>
+
+<p><font color=blue>設定完畢後，記得將 <strong>iENBox Service Restart</strong></font></p>
+
+<p>註： 可以從 Overview -&gt; MQTT Status，確認是否為 <code>connected</code></p>
+
+<p><img src="/images/iENBox/mqtt.png" alt="Image" /></p>
+
+<aside class="warning">
+若 DNS Server 被防火牆擋住，可以將 URL 改為 tcp://211.72.253.90:1883
+<p style="margin-top:10px;margin-left:25px;margin-bottom:0px">另外使用 MDVPN 上網，MQTT URL 須設為 tcp://172.30.22.220:1883</p>
+</aside> 
 <h2 id='restore-ienbox'>同步異常處理 (Restore iENBox)</h2>
 <p>以下為 iENBox Restore 清除的方式，基本上同步異常有很多原因</p>
 
@@ -159,7 +179,7 @@
 <p>執行 <code>clean.sh</code> 會將 iENBox 作清除動作 (若有 raw data 也會一併清除)</p>
 <pre class="highlight shell tab-shell"><code>    <span class="nb">cd</span> /opt/ienbox/core/bin
     ./clean.sh
-</code></pre><h3 id='mqtt-server'>確認 MQTT Server 通訊</h3>
+</code></pre><h3 id='mqtt-server-2'>確認 MQTT Server 通訊</h3>
 <p>可以透過 iENBox WebService 頁面的 Overview 中，查看 MQTT Status 是否是 connected 狀態</p>
 
 <p>當 MQTT Status 狀態是 lost 得確認網路端是否正常，可以使用 ping 、 telnet 來做確認</p>
@@ -232,7 +252,7 @@
 <h2 id='ienbox-3'>iENBox 設備點位無法讀取</h2>
 <p>此問題為設備通訊不穩定，可以加終端電阻，或換通訊線來改善</p>
 
-<p>另外也能透過調整 <font color=blue>timeout</font> 、 <font color=blue>polling time</font>，提升 iENBox 詢問設備的成功率/</p>
+<p>另外也能透過調整 <font color=blue>timeout</font> 、 <font color=blue>polling time</font>，提升 iENBox 詢問設備的成功率</p>
 <h3 id='iencentre'>iENCentre 設定</h3>
 <ul>
 <li><p>維運選單 -&gt; 設備管理 -&gt; 控制器管理 -&gt; 選擇控制器</p></li>

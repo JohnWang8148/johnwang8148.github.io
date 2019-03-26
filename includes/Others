@@ -18,7 +18,7 @@
         <span class="k">fi
         </span>sleep 600
     <span class="k">done</span>
-</code></pre><h2 id='litebox-mqtt'>Litebox MQTT 不穩重開機</h2>
+</code></pre><h2 id='litebox-mqtt'>Litebox MQTT 不穩定重開機</h2>
 <p>為偵測 Litebox 是否已撥號上網，若有連線能力後，透過 <code>netstat</code> 查看 MQTT 連線狀態</p>
 
 <p>若 MQTT 連線異常，則將 Litebox 重開機，此問題為老問題，與 Litebox 硬體設備有關</p>
@@ -39,4 +39,29 @@
             <span class="k">fi 
         fi
     done</span>
+</code></pre><h2 id='uno-2473g-ienbox'>UNO-2473G iENBox 安裝</h2>
+<p>此機型與先前 UNO 系列的 iENBox 磁區不太相同，得將 sda1 更改為 sdb1</p>
+
+<p>主要修改兩個檔案 <code>isolinux.cfg</code> 以及 <code>ks.cfg</code></p>
+
+<ul>
+<li>修改 USB 內 <font color=blue>/isolinux/isolinux.cfg</font></li>
+</ul>
+<pre class="highlight shell tab-shell"><code>    append <span class="nv">initrd</span><span class="o">=</span>initrd.img <span class="nv">ks</span><span class="o">=</span>hd:sda1:/ks.cfg noipv6
 </code></pre>
+<p><img src="/images/iENBox/isolinux.png" alt="Image" /></p>
+
+<ul>
+<li>修改 USB 內 <font color=blue>ks.cfg</font></li>
+</ul>
+<pre class="highlight shell tab-shell"><code>    <span class="nv">blacks</span><span class="o">=</span><span class="s2">"loop0 sda"</span>
+    harddrive --partition<span class="o">=</span>/dev/sda1 --dir<span class="o">=</span>/
+    mount /dev/sda1 /mnt
+</code></pre>
+<p><img src="/images/iENBox/ks.png" alt="Image" /></p>
+
+<ul>
+<li>以 USB 開機安裝，會跳出 kickstart 錯誤，將 <font color=blue>ks=hd:sda1:/ks.cfg</font> 改為 <font color=blue>ks=hd:sdb1:/ks.cfg </font>，即可繼續完成安裝</li>
+</ul>
+
+<p><img src="/images/iENBox/kickstart.png" alt="Image" /></p>

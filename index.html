@@ -239,6 +239,9 @@
                     <a href="#ienbox-service" class="toc-h2 toc-link" data-title="停用iENBox Service">停用iENBox Service</a>
                   </li>
                   <li>
+                    <a href="#mqtt-server" class="toc-h2 toc-link" data-title="MQTT Server 設定">MQTT Server 設定</a>
+                  </li>
+                  <li>
                     <a href="#restore-ienbox" class="toc-h2 toc-link" data-title="同步異常處理 (Restore iENBox)">同步異常處理 (Restore iENBox)</a>
                   </li>
                   <li>
@@ -315,7 +318,10 @@
                     <a href="#ienbox-webservice" class="toc-h2 toc-link" data-title="iENBox WebService 服務不正常運作 (待驗證)">iENBox WebService 服務不正常運作 <font color="red">(待驗證)</font></a>
                   </li>
                   <li>
-                    <a href="#litebox-mqtt" class="toc-h2 toc-link" data-title="Litebox MQTT 不穩重開機">Litebox MQTT 不穩重開機</a>
+                    <a href="#litebox-mqtt" class="toc-h2 toc-link" data-title="Litebox MQTT 不穩定重開機">Litebox MQTT 不穩定重開機</a>
+                  </li>
+                  <li>
+                    <a href="#uno-2473g-ienbox" class="toc-h2 toc-link" data-title="UNO-2473G iENBox 安裝">UNO-2473G iENBox 安裝</a>
                   </li>
               </ul>
           </li>
@@ -631,6 +637,26 @@ You can use <code>modInverter.jar -h</code> for help.
 <p>確認其 iENBox 服務是否恢復運作</p>
 
 <p><img src="images/iENBox/recover.png" alt="Image" /></p>
+<h2 id='mqtt-server'>MQTT Server 設定</h2>
+<p>當現場網路無法使用固定IP的話，例如：浮動IP、4G上網、私有網路等，都需要透過 MQTT Server 來註冊</p>
+
+<p>設定方式：</p>
+
+<ul>
+<li><p>IENBOX_MQTT_ENABLE： <strong>TRUE</strong></p></li>
+<li><p>IENBOX_MQTT_URL_FORMAT： <strong>tcp://mqtt.ien.net.tw:1883</strong></p></li>
+</ul>
+
+<p><font color=blue>設定完畢後，記得將 <strong>iENBox Service Restart</strong></font></p>
+
+<p>註： 可以從 Overview -&gt; MQTT Status，確認是否為 <code>connected</code></p>
+
+<p><img src="images/iENBox/mqtt.png" alt="Image" /></p>
+
+<aside class="warning">
+若 DNS Server 被防火牆擋住，可以將 URL 改為 tcp://211.72.253.90:1883
+<p style="margin-top:10px;margin-left:25px;margin-bottom:0px">另外使用 MDVPN 上網，MQTT URL 須設為 tcp://172.30.22.220:1883</p>
+</aside> 
 <h2 id='restore-ienbox'>同步異常處理 (Restore iENBox)</h2>
 <p>以下為 iENBox Restore 清除的方式，基本上同步異常有很多原因</p>
 
@@ -653,7 +679,7 @@ You can use <code>modInverter.jar -h</code> for help.
 <p>執行 <code>clean.sh</code> 會將 iENBox 作清除動作 (若有 raw data 也會一併清除)</p>
 <pre class="highlight shell tab-shell"><code>    <span class="nb">cd</span> /opt/ienbox/core/bin
     ./clean.sh
-</code></pre><h3 id='mqtt-server'>確認 MQTT Server 通訊</h3>
+</code></pre><h3 id='mqtt-server-2'>確認 MQTT Server 通訊</h3>
 <p>可以透過 iENBox WebService 頁面的 Overview 中，查看 MQTT Status 是否是 connected 狀態</p>
 
 <p>當 MQTT Status 狀態是 lost 得確認網路端是否正常，可以使用 ping 、 telnet 來做確認</p>
@@ -726,7 +752,7 @@ You can use <code>modInverter.jar -h</code> for help.
 <h2 id='ienbox-3'>iENBox 設備點位無法讀取</h2>
 <p>此問題為設備通訊不穩定，可以加終端電阻，或換通訊線來改善</p>
 
-<p>另外也能透過調整 <font color=blue>timeout</font> 、 <font color=blue>polling time</font>，提升 iENBox 詢問設備的成功率/</p>
+<p>另外也能透過調整 <font color=blue>timeout</font> 、 <font color=blue>polling time</font>，提升 iENBox 詢問設備的成功率</p>
 <h3 id='iencentre'>iENCentre 設定</h3>
 <ul>
 <li><p>維運選單 -&gt; 設備管理 -&gt; 控制器管理 -&gt; 選擇控制器</p></li>
@@ -1135,7 +1161,7 @@ log4j.appender.ien.layout.ConversionPattern<span class="o">=[</span>%d<span clas
         <span class="k">fi
         </span>sleep 600
     <span class="k">done</span>
-</code></pre><h2 id='litebox-mqtt'>Litebox MQTT 不穩重開機</h2>
+</code></pre><h2 id='litebox-mqtt'>Litebox MQTT 不穩定重開機</h2>
 <p>為偵測 Litebox 是否已撥號上網，若有連線能力後，透過 <code>netstat</code> 查看 MQTT 連線狀態</p>
 
 <p>若 MQTT 連線異常，則將 Litebox 重開機，此問題為老問題，與 Litebox 硬體設備有關</p>
@@ -1156,7 +1182,33 @@ log4j.appender.ien.layout.ConversionPattern<span class="o">=[</span>%d<span clas
             <span class="k">fi 
         fi
     done</span>
+</code></pre><h2 id='uno-2473g-ienbox'>UNO-2473G iENBox 安裝</h2>
+<p>此機型與先前 UNO 系列的 iENBox 磁區不太相同，得將 sda1 更改為 sdb1</p>
+
+<p>主要修改兩個檔案 <code>isolinux.cfg</code> 以及 <code>ks.cfg</code></p>
+
+<ul>
+<li>修改 USB 內 <font color=blue>/isolinux/isolinux.cfg</font></li>
+</ul>
+<pre class="highlight shell tab-shell"><code>    append <span class="nv">initrd</span><span class="o">=</span>initrd.img <span class="nv">ks</span><span class="o">=</span>hd:sda1:/ks.cfg noipv6
 </code></pre>
+<p><img src="images/iENBox/isolinux.png" alt="Image" /></p>
+
+<ul>
+<li>修改 USB 內 <font color=blue>ks.cfg</font></li>
+</ul>
+<pre class="highlight shell tab-shell"><code>    <span class="nv">blacks</span><span class="o">=</span><span class="s2">"loop0 sda"</span>
+    harddrive --partition<span class="o">=</span>/dev/sda1 --dir<span class="o">=</span>/
+    mount /dev/sda1 /mnt
+</code></pre>
+<p><img src="images/iENBox/ks.png" alt="Image" /></p>
+
+<ul>
+<li>以 USB 開機安裝，會跳出 kickstart 錯誤，將 <font color=blue>ks=hd:sda1:/ks.cfg</font> 改為 <font color=blue>ks=hd:sdb1:/ks.cfg </font>，即可繼續完成安裝</li>
+</ul>
+
+<p><img src="images/iENBox/kickstart.png" alt="Image" /></p>
+
       </div>
       <div class="dark-box">
       </div>
