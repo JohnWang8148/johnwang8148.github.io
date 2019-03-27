@@ -61,7 +61,7 @@
 <p><img src="/images/iENBox/ks.png" alt="Image" /></p>
 
 <ul>
-<li>以 USB 開機安裝，會跳出 kickstart 錯誤，將 <font color=blue>ks=hd:sda1:/ks.cfg</font> 改為 <font color=blue>ks=hd:sdb1:/ks.cfg </font>，即可繼續完成安裝</li>
+<li>以 USB 開機安裝，會跳出 kickstart 錯誤，將 <font color=blue>hd:sda1:/ks.cfg</font> 改為 <font color=blue>hd:sdb1:/ks.cfg </font>，即可繼續完成安裝</li>
 </ul>
 
 <p><img src="/images/iENBox/kickstart.png" alt="Image" /></p>
