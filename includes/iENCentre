@@ -10,9 +10,13 @@
 <li><p>若有 raw data，建議重啟服務，若重啟服務仍不行，請往下逐一確認問題點</p></li>
 </ol>
 
-<p>若案場是<font color=blue>固定IP</font>，可以透過平台的 <font color=blue><strong>控制伺服器維運</strong></font> 進入 iENBox Webservice 作重啟 iENBox 動作，如下圖</p>
+<p>案場是透過 <font color=blue>固定 IP </font> 納管，從平台的 <font color=blue><strong>控制伺服器維運</strong></font> 進入 iENBox Webservice 作重啟 iENBox 動作，如下圖</p>
 
 <p><img src="/images/iENCentre/restart.png" alt="Image" /></p>
+
+<p>案場是透過 <font color=blue>MQTT Server</font> 納管，從平台的 <font color=blue><strong>控制伺服器維運</strong></font> 進入 MQTT 遠端維運 作重啟 iENBox 動作，如下圖</p>
+
+<p><img src="/images/iENCentre/mqttRestart.png" alt="Image" /></p>
 <h3 id='firewall-rules'>Firewall Rules</h3>
 <p>確認 iENBox 對 iEN 平台的 8080 port 是有連通的</p>
 
@@ -42,16 +46,16 @@
 <p>位置: webapps/portal/WEB-INF/log4j.properties</p>
 
 <p>將前10行換成下面這些之後儲存重啟服務，應能產生 ien.log</p>
-<pre class="highlight shell tab-shell"><code>log4j.rootLogger<span class="o">=</span>INFO, ien
+<pre class="highlight shell tab-shell"><code>    log4j.rootLogger<span class="o">=</span>INFO, ien
 
-log4j.logger.ien<span class="o">=</span>INFO, ien
-log4j.appender.ien<span class="o">=</span>org.apache.log4j.RollingFileAppender
-log4j.appender.ien.File<span class="o">=</span><span class="k">${</span><span class="nv">catalina</span><span class="p">.home</span><span class="k">}</span>/logs/ien.log
-log4j.appender.ien.Encoding<span class="o">=</span>UTF-8
-log4j.appender.ien.MaxFileSize<span class="o">=</span>10MB
-log4j.appender.ien.MaxBackupIndex<span class="o">=</span>5
-log4j.appender.ien.layout<span class="o">=</span>org.apache.log4j.PatternLayout
-log4j.appender.ien.layout.ConversionPattern<span class="o">=[</span>%d<span class="o">{</span>MM/dd HH:mm:ss<span class="o">}]</span> %5p <span class="o">(</span>%C<span class="o">{</span>1<span class="o">}</span>:%L<span class="o">)</span> - %m%n
+    log4j.logger.ien<span class="o">=</span>INFO, ien
+    log4j.appender.ien<span class="o">=</span>org.apache.log4j.RollingFileAppender
+    log4j.appender.ien.File<span class="o">=</span><span class="k">${</span><span class="nv">catalina</span><span class="p">.home</span><span class="k">}</span>/logs/ien.log
+    log4j.appender.ien.Encoding<span class="o">=</span>UTF-8
+    log4j.appender.ien.MaxFileSize<span class="o">=</span>10MB
+    log4j.appender.ien.MaxBackupIndex<span class="o">=</span>5
+    log4j.appender.ien.layout<span class="o">=</span>org.apache.log4j.PatternLayout
+    log4j.appender.ien.layout.ConversionPattern<span class="o">=[</span>%d<span class="o">{</span>MM/dd HH:mm:ss<span class="o">}]</span> %5p <span class="o">(</span>%C<span class="o">{</span>1<span class="o">}</span>:%L<span class="o">)</span> - %m%n
 </code></pre>
 <p>沒產生 ien.log 前的設定畫面，可以發現 rootLogger 設為 OFF</p>
 
