@@ -4,6 +4,8 @@
 <p>先前有針對此問題做改善，但仍有一定機率會發生</p>
 
 <p>透過 <code>wget</code> 判斷 iENBox WebService 有無開啟成功，若 WebService 抓取失敗，將 iENBox 砍掉重啟</p>
+
+<p>下載: <a href="http://bit.ly/2OvplRk" target="_blank">一鍵執行</a></p>
 <pre class="highlight shell tab-shell"><code>    <span class="c">#!/bin/bash</span>
     <span class="k">while</span> <span class="o">[</span> TRUE <span class="o">]</span>
     <span class="k">do
@@ -23,7 +25,7 @@
 
 <p>若 MQTT 連線異常，則將 Litebox 重開機，此問題為老問題，與 Litebox 硬體設備有關</p>
 
-<p>連結: <a href="http://bit.ly/2UP04DS" target="_blank">一鍵執行</a></p>
+<p>下載: <a href="http://bit.ly/2UP04DS" target="_blank">一鍵執行</a></p>
 <pre class="highlight shell tab-shell"><code>    <span class="c">#!/bin/bash</span>
     <span class="k">while</span> <span class="o">[</span> TRUE <span class="o">]</span> 
     <span class="k">do

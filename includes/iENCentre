@@ -60,7 +60,7 @@
 <p>沒產生 ien.log 前的設定畫面，可以發現 rootLogger 設為 OFF</p>
 
 <p><img src="/images/iENCentre/log.png" alt="Image" /></p>
-<h2 id='iencentre-2'>更換 iENCentre 資料庫使用者帳密</h2>
+<h2 id='iencentre-sql'>更換 iENCentre SQL 資料庫使用者帳密</h2>
 <p>修改下列兩個檔案，將 <code>database.user</code> 、 <code>database.password</code> 替換欲修改的帳密</p>
 
 <ol>
@@ -73,7 +73,7 @@
 <aside class="warning">
 設定完須將 MSSQL 服務重啟，再將 iENCentre 服務重啟
 </aside>  
-<h2 id='iencentre-3'>iENCentre 語音告警設定</h2>
+<h2 id='iencentre-2'>iENCentre 語音告警設定</h2>
 <p>需將告警事件單的 <font color=blue><strong>事件等級事件嚴重程度</strong></font> 設定為重要以上階級，才能收到語音告警</p>
 
 <p>將等級程度設為 <font color=red>緊急</font> 、 <font color=red>警戒</font> 、 <font color=red>重要</font> 以上</p>
