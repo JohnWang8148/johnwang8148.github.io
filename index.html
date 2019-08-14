@@ -239,10 +239,10 @@
                     <a href="#ienbox-service" class="toc-h2 toc-link" data-title="停用iENBox Service">停用iENBox Service</a>
                   </li>
                   <li>
-                    <a href="#mqtt-server" class="toc-h2 toc-link" data-title="MQTT Server 設定">MQTT Server 設定</a>
+                    <a href="#restore-ienbox" class="toc-h2 toc-link" data-title="同步異常處理 (Restore iENBox)">同步異常處理 (Restore iENBox)</a>
                   </li>
                   <li>
-                    <a href="#restore-ienbox" class="toc-h2 toc-link" data-title="同步異常處理 (Restore iENBox)">同步異常處理 (Restore iENBox)</a>
+                    <a href="#ienbox-3" class="toc-h2 toc-link" data-title="iENBox 時間校正">iENBox 時間校正</a>
                   </li>
                   <li>
                     <a href="#ienbox-litebox" class="toc-h2 toc-link" data-title="iENBox / Litebox 定時重開機">iENBox / Litebox 定時重開機</a>
@@ -255,6 +255,9 @@
                   </li>
                   <li>
                     <a href="#ienbox-6" class="toc-h2 toc-link" data-title="iENBox 事件單消化不良">iENBox 事件單消化不良</a>
+                  </li>
+                  <li>
+                    <a href="#mqtt-broker" class="toc-h2 toc-link" data-title="MQTT Broker 狀態確認">MQTT Broker 狀態確認</a>
                   </li>
                   <li>
                     <a href="#ienbox-7" class="toc-h2 toc-link" data-title="iENBox 升級包及更新">iENBox 升級包及更新</a>
@@ -274,10 +277,13 @@
                     <a href="#iencentre-log" class="toc-h2 toc-link" data-title="開啟 iENCentre LOG 紀錄">開啟 iENCentre LOG 紀錄</a>
                   </li>
                   <li>
-                    <a href="#iencentre-sql" class="toc-h2 toc-link" data-title="更換 iENCentre SQL 資料庫使用者帳密">更換 iENCentre SQL 資料庫使用者帳密</a>
+                    <a href="#iencentre-2" class="toc-h2 toc-link" data-title="更換 iENCentre 資料庫使用者帳密">更換 iENCentre 資料庫使用者帳密</a>
                   </li>
                   <li>
-                    <a href="#iencentre-2" class="toc-h2 toc-link" data-title="iENCentre 語音告警設定">iENCentre 語音告警設定</a>
+                    <a href="#iencentre-voice-notify" class="toc-h2 toc-link" data-title="iENCentre 語音告警設定 (Voice Notify)">iENCentre 語音告警設定 (Voice Notify)</a>
+                  </li>
+                  <li>
+                    <a href="#edge-computing" class="toc-h2 toc-link" data-title="Edge Computing (邊緣計算) 設定">Edge Computing (邊緣計算) 設定</a>
                   </li>
               </ul>
           </li>
@@ -315,13 +321,10 @@
             <a href="#others" class="toc-h1 toc-link" data-title="Others">Others</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#ienbox-webservice" class="toc-h2 toc-link" data-title="iENBox WebService 服務不正常運作 (待驗證)">iENBox WebService 服務不正常運作 <font color="red">(待驗證)</font></a>
+                    <a href="#ienbox-webservice" class="toc-h2 toc-link" data-title="iENBox WebService 服務不正常運作">iENBox WebService 服務不正常運作</a>
                   </li>
                   <li>
                     <a href="#litebox-mqtt" class="toc-h2 toc-link" data-title="Litebox MQTT 不穩定重開機">Litebox MQTT 不穩定重開機</a>
-                  </li>
-                  <li>
-                    <a href="#uno-2473g-ienbox" class="toc-h2 toc-link" data-title="UNO-2473G iENBox 安裝">UNO-2473G iENBox 安裝</a>
                   </li>
               </ul>
           </li>
@@ -637,36 +640,6 @@ You can use <code>modInverter.jar -h</code> for help.
 <p>確認其 iENBox 服務是否恢復運作</p>
 
 <p><img src="images/iENBox/recover.png" alt="Image" /></p>
-<h2 id='mqtt-server'>MQTT Server 設定</h2>
-<p>當現場網路無法使用固定IP的話，例如：浮動IP、4G上網、私有網路等，都需要透過 MQTT Server 來註冊</p>
-
-<p>設定方式：</p>
-<h3 id='iencentre'>iENCentre</h3>
-<ul>
-<li>維運選單 -&gt; 設備管理 -&gt; 控制伺服器管理 -&gt; 點選欲設定的控制伺服器</li>
-</ul>
-
-<p>將 IP 欄位更換成 iENBox 的 MAC Address，而 Endpoint 欄位為 mqtt://MAC</p>
-
-<p>註： 確定 <code>Endpoint</code> 設定內容，如果有更動到 IP 欄位，則 Endpoint 欄位會跳掉，得重新設定</p>
-
-<p><img src="images/iENBox/mac.png" alt="Image" /></p>
-<h3 id='ienbox-3'>iENBox</h3>
-<ul>
-<li><p>IENBOX_MQTT_ENABLE： <strong>TRUE</strong></p></li>
-<li><p>IENBOX_MQTT_URL_FORMAT： <strong>tcp://mqtt.ien.net.tw:1883</strong></p></li>
-</ul>
-
-<p><font color=blue>設定完畢後，記得將 <strong>iENBox Service Restart</strong></font></p>
-
-<p>註： 可以從 Overview -&gt; MQTT Status，確認是否為 <code>connected</code></p>
-
-<p><img src="images/iENBox/mqtt.png" alt="Image" /></p>
-
-<aside class="warning">
-若 DNS Server 被防火牆擋住，可以將 URL 改為 tcp://211.72.253.90:1883
-<p style="margin-top:10px;margin-left:25px;margin-bottom:0px">另外使用 MDVPN 上網，MQTT URL 須設為 tcp://172.30.22.220:1883</p>
-</aside> 
 <h2 id='restore-ienbox'>同步異常處理 (Restore iENBox)</h2>
 <p>以下為 iENBox Restore 清除的方式，基本上同步異常有很多原因</p>
 
@@ -689,7 +662,7 @@ You can use <code>modInverter.jar -h</code> for help.
 <p>執行 <code>clean.sh</code> 會將 iENBox 作清除動作 (若有 raw data 也會一併清除)</p>
 <pre class="highlight shell tab-shell"><code>    <span class="nb">cd</span> /opt/ienbox/core/bin
     ./clean.sh
-</code></pre><h3 id='mqtt-server-2'>確認 MQTT Server 通訊</h3>
+</code></pre><h3 id='mqtt-server'>確認 MQTT Server 通訊</h3>
 <p>可以透過 iENBox WebService 頁面的 Overview 中，查看 MQTT Status 是否是 connected 狀態</p>
 
 <p>當 MQTT Status 狀態是 lost 得確認網路端是否正常，可以使用 ping 、 telnet 來做確認</p>
@@ -717,7 +690,17 @@ You can use <code>modInverter.jar -h</code> for help.
 <p>若一直顯示同步中，建議將 iENBox 版本更新至最新後，再同步一次</p>
 
 <p>原因為可能 iENBox 版本過舊，導致 iENCentre 新版本新增的功能有所衝突</p>
-<h2 id='ienbox-litebox'>iENBox / Litebox 定時重開機</h2>
+<h2 id='ienbox-3'>iENBox 時間校正</h2>
+<p>從 iEN 平台同步，即可將 iENBox 時間做校時，惟須確認 iENBox 重開機後時間是否會跑掉</p>
+
+<p>若重開機後時間會跑掉，建議同步 iENBox 後，確認目前 iENBox 時間是正確的</p>
+
+<p>再利用 <code>hwclock -w</code> 將 目前系統時間 寫入 <font color=blue>hardware clock</font> </p>
+<pre class="highlight shell tab-shell"><code>    <span class="c">### Check iENBox current time</span>
+    date
+    <span class="c">### Set iENBox hardware clock from system clock</span>
+    hwclock -w
+</code></pre><h2 id='ienbox-litebox'>iENBox / Litebox 定時重開機</h2>
 <p>若設備有不穩定情況，建議將 iENBox / Litebox 作定時重開機動作，再觀察幾天看看</p>
 <h3 id='webservice-maintenance-2'>WebService Maintenance</h3>
 <p>根據案場環境，設定不同重開機條件，iENBox 能定時重啟，Litebox 則是 MQTT 斷線</p>
@@ -758,12 +741,12 @@ You can use <code>modInverter.jar -h</code> for help.
 
 <p><img src="images/iENBox/rebootiENBox.png" alt="Image" /></p>
 
-<p><img src="images/Litebox/rebootLitebox.png" alt="Image" /></p>
+<p><img src="images/Litebox/rebootLiteBox.png" alt="Image" /></p>
 <h2 id='ienbox-4'>iENBox 設備點位無法讀取</h2>
 <p>此問題為設備通訊不穩定，可以加終端電阻，或換通訊線來改善</p>
 
-<p>另外也能透過調整 <font color=blue>timeout</font> 、 <font color=blue>polling time</font>，提升 iENBox 詢問設備的成功率</p>
-<h3 id='iencentre-2'>iENCentre 設定</h3>
+<p>另外也能透過調整 <font color=blue>timeout</font> 、 <font color=blue>polling time</font>，提升 iENBox 詢問設備的成功率/</p>
+<h3 id='ien'>iEN 平台設定</h3>
 <ul>
 <li><p>維運選單 -&gt; 設備管理 -&gt; 控制器管理 -&gt; 選擇控制器</p></li>
 <li><p>輪詢時間：表示為 polling time，等於 iENBox 的 <code>JAMOD_SEND_DELAY_MS</code></p></li>
@@ -805,6 +788,26 @@ You can use <code>modInverter.jar -h</code> for help.
 </ul>
 
 <p><img src="images/iENBox/event.png" alt="Image" /></p>
+<h2 id='mqtt-broker'>MQTT Broker 狀態確認</h2>
+<p>若發生 iEN 平台斷線、無法同步等情況，需要確定 MQTT 服務是否正常運作，參考： <a href="https://docs.google.com/document/d/1xli3lcqkSH1JfjuzV5Zac5lHzTcbhyuAaS5twoUmYbI" target="_blank">確認MQTT Broker狀態</a></p>
+
+<p>1.透過 <code>MQTTlens</code> 確認 MQTT Broker 狀態：</p>
+
+<p>在 MQTTlens 輸入 IP、Port、使用者帳密 (帳密: ien/ienet1308)，建立 MQTT 連線</p>
+
+<p><img src="images/iENBox/mqttlens.png" alt="Image" /></p>
+
+<p>2.利用 MQTTlens 的 <font color=blue>Publish / Subscribe </font> 確認 MQTT Broker 狀態：</p>
+
+<ul>
+<li>先做 <font color=red>Subscribe</font> 訂閱動作，再進行 <font color=red>Publish</font> 發布動作 </li>
+</ul>
+
+<p>下圖為對 test topic 做 Subscribe 訂閱，接著 Publish Gino 訊息給 test topic</p>
+
+<p>可以看到回應 Message: Gino，有回應成功，表示 MQTT Broker 是正常運作的</p>
+
+<p><img src="images/iENBox/publishsubscribe.png" alt="Image" /></p>
 <h2 id='ienbox-7'>iENBox 升級包及更新</h2>
 <p>講述 iENBox 升級包如何產生，以及如何將案場的 iENBox 做更新</p>
 <h3 id='a2f059e7a9'>升級包製作</h3>
@@ -907,13 +910,9 @@ You can use <code>modInverter.jar -h</code> for help.
 <li><p>若有 raw data，建議重啟服務，若重啟服務仍不行，請往下逐一確認問題點</p></li>
 </ol>
 
-<p>案場是透過 <font color=blue>固定 IP </font> 納管，從平台的 <font color=blue><strong>控制伺服器維運</strong></font> 進入 iENBox Webservice 作重啟 iENBox 動作，如下圖</p>
+<p>若案場是<font color=blue>固定IP</font>，可以透過平台的 <font color=blue><strong>控制伺服器維運</strong></font> 進入 iENBox Webservice 作重啟 iENBox 動作，如下圖</p>
 
 <p><img src="images/iENCentre/restart.png" alt="Image" /></p>
-
-<p>案場是透過 <font color=blue>MQTT Server</font> 納管，從平台的 <font color=blue><strong>控制伺服器維運</strong></font> 進入 MQTT 遠端維運 作重啟 iENBox 動作，如下圖</p>
-
-<p><img src="images/iENCentre/mqttRestart.png" alt="Image" /></p>
 <h3 id='firewall-rules'>Firewall Rules</h3>
 <p>確認 iENBox 對 iEN 平台的 8080 port 是有連通的</p>
 
@@ -943,21 +942,21 @@ You can use <code>modInverter.jar -h</code> for help.
 <p>位置: webapps/portal/WEB-INF/log4j.properties</p>
 
 <p>將前10行換成下面這些之後儲存重啟服務，應能產生 ien.log</p>
-<pre class="highlight shell tab-shell"><code>    log4j.rootLogger<span class="o">=</span>INFO, ien
+<pre class="highlight shell tab-shell"><code>log4j.rootLogger<span class="o">=</span>INFO, ien
 
-    log4j.logger.ien<span class="o">=</span>INFO, ien
-    log4j.appender.ien<span class="o">=</span>org.apache.log4j.RollingFileAppender
-    log4j.appender.ien.File<span class="o">=</span><span class="k">${</span><span class="nv">catalina</span><span class="p">.home</span><span class="k">}</span>/logs/ien.log
-    log4j.appender.ien.Encoding<span class="o">=</span>UTF-8
-    log4j.appender.ien.MaxFileSize<span class="o">=</span>10MB
-    log4j.appender.ien.MaxBackupIndex<span class="o">=</span>5
-    log4j.appender.ien.layout<span class="o">=</span>org.apache.log4j.PatternLayout
-    log4j.appender.ien.layout.ConversionPattern<span class="o">=[</span>%d<span class="o">{</span>MM/dd HH:mm:ss<span class="o">}]</span> %5p <span class="o">(</span>%C<span class="o">{</span>1<span class="o">}</span>:%L<span class="o">)</span> - %m%n
+log4j.logger.ien<span class="o">=</span>INFO, ien
+log4j.appender.ien<span class="o">=</span>org.apache.log4j.RollingFileAppender
+log4j.appender.ien.File<span class="o">=</span><span class="k">${</span><span class="nv">catalina</span><span class="p">.home</span><span class="k">}</span>/logs/ien.log
+log4j.appender.ien.Encoding<span class="o">=</span>UTF-8
+log4j.appender.ien.MaxFileSize<span class="o">=</span>10MB
+log4j.appender.ien.MaxBackupIndex<span class="o">=</span>5
+log4j.appender.ien.layout<span class="o">=</span>org.apache.log4j.PatternLayout
+log4j.appender.ien.layout.ConversionPattern<span class="o">=[</span>%d<span class="o">{</span>MM/dd HH:mm:ss<span class="o">}]</span> %5p <span class="o">(</span>%C<span class="o">{</span>1<span class="o">}</span>:%L<span class="o">)</span> - %m%n
 </code></pre>
 <p>沒產生 ien.log 前的設定畫面，可以發現 rootLogger 設為 OFF</p>
 
 <p><img src="images/iENCentre/log.png" alt="Image" /></p>
-<h2 id='iencentre-sql'>更換 iENCentre SQL 資料庫使用者帳密</h2>
+<h2 id='iencentre-2'>更換 iENCentre 資料庫使用者帳密</h2>
 <p>修改下列兩個檔案，將 <code>database.user</code> 、 <code>database.password</code> 替換欲修改的帳密</p>
 
 <ol>
@@ -970,12 +969,30 @@ You can use <code>modInverter.jar -h</code> for help.
 <aside class="warning">
 設定完須將 MSSQL 服務重啟，再將 iENCentre 服務重啟
 </aside>  
-<h2 id='iencentre-2'>iENCentre 語音告警設定</h2>
+<h2 id='iencentre-voice-notify'>iENCentre 語音告警設定 (Voice Notify)</h2>
 <p>需將告警事件單的 <font color=blue><strong>事件等級事件嚴重程度</strong></font> 設定為重要以上階級，才能收到語音告警</p>
 
 <p>將等級程度設為 <font color=red>緊急</font> 、 <font color=red>警戒</font> 、 <font color=red>重要</font> 以上</p>
 
 <p><img src="images/iENCentre/voice.png" alt="Image" /></p>
+<h2 id='edge-computing'>Edge Computing (邊緣計算) 設定</h2>
+<p>需要修改 iENCentre 與 iENBox 參數設定，<a href="https://docs.google.com/document/d/1yk3dYvlHknvMeqRwsHxMFqblRAKBpOALbgp690yXjTA" target="_blank">Edge Computing設定(Google Doc)</a>，供參考</p>
+
+<ol>
+<li>勾選控制伺服器的 <code>Edge Computing</code> ，使平台不再做 ETL 計算</li>
+</ol>
+
+<p><img src="images/iENCentre/edge_ien.png" alt="Image" /></p>
+
+<ol>
+<li>設定 iENBox <code>FOG_COMPUTING_ENABLE</code> 為 <font color=blue>TRUE</font></li>
+</ol>
+
+<p><img src="images/iENCentre/edge_box.png" alt="Image" /></p>
+
+<aside class="notice">
+iENBox 版本須為 1.27.1 才能使用 Edge Computing 功能
+</aside>  
 <h1 id='ienportal'>iENPortal</h1>
 <p>說明 iENPortal 環境建置，以及相關程式 function 用途</p>
 
@@ -1138,7 +1155,9 @@ You can use <code>modInverter.jar -h</code> for help.
 
 <p>Step 2. 尋找 Raw Data/ETL Data 存放位置，會長在 customer 底下</p>
 
-<p>位置為 ienc_system -&gt; Schemas -&gt; ienc_customer_1 <font color=red>(註: 因為是企業版，故客戶ID 大多為1，理論上要對應到實際客戶ID)</font></p>
+<p>位置為 ienc_system -&gt; Schemas -&gt; ienc_customer_1 </p>
+
+<p><font color=red>(註: 因為是企業版，故客戶ID 大多為1，理論上要對應到實際客戶ID)</font></p>
 
 <p><img src="images/Database/Postgresql/schema.png" alt="Image" /></p>
 
@@ -1155,14 +1174,12 @@ You can use <code>modInverter.jar -h</code> for help.
 <p>仍不行的話，向 TL 尋求協助幫忙</p>
 
 <p><img src="images/Log/kernel.png" alt="Image" /></p>
-<h1 id='others'>Others</h1><h2 id='ienbox-webservice'>iENBox WebService 服務不正常運作 <font color=red>(待驗證)</font></h2>
+<h1 id='others'>Others</h1><h2 id='ienbox-webservice'>iENBox WebService 服務不正常運作</h2>
 <p>iENBox 有機率性服務開啟會失敗，以致於卡在網頁都是 404 狀態，通常重開機能解決</p>
 
 <p>先前有針對此問題做改善，但仍有一定機率會發生</p>
 
 <p>透過 <code>wget</code> 判斷 iENBox WebService 有無開啟成功，若 WebService 抓取失敗，將 iENBox 砍掉重啟</p>
-
-<p>下載: <a href="http://bit.ly/2OvplRk" target="_blank">一鍵執行</a></p>
 <pre class="highlight shell tab-shell"><code>    <span class="c">#!/bin/bash</span>
     <span class="k">while</span> <span class="o">[</span> TRUE <span class="o">]</span>
     <span class="k">do
@@ -1182,7 +1199,7 @@ You can use <code>modInverter.jar -h</code> for help.
 
 <p>若 MQTT 連線異常，則將 Litebox 重開機，此問題為老問題，與 Litebox 硬體設備有關</p>
 
-<p>下載: <a href="http://bit.ly/2UP04DS" target="_blank">一鍵執行</a></p>
+<p>連結: <a href="http://bit.ly/2UP04DS" target="_blank">一鍵執行</a></p>
 <pre class="highlight shell tab-shell"><code>    <span class="c">#!/bin/bash</span>
     <span class="k">while</span> <span class="o">[</span> TRUE <span class="o">]</span> 
     <span class="k">do
@@ -1198,33 +1215,7 @@ You can use <code>modInverter.jar -h</code> for help.
             <span class="k">fi 
         fi
     done</span>
-</code></pre><h2 id='uno-2473g-ienbox'>UNO-2473G iENBox 安裝</h2>
-<p>此機型與先前 UNO 系列的 iENBox 磁區不太相同，得將 sda1 更改為 sdb1</p>
-
-<p>主要修改兩個檔案 <code>isolinux.cfg</code> 以及 <code>ks.cfg</code></p>
-
-<ul>
-<li>修改 USB 內 <font color=blue>/isolinux/isolinux.cfg</font></li>
-</ul>
-<pre class="highlight shell tab-shell"><code>    append <span class="nv">initrd</span><span class="o">=</span>initrd.img <span class="nv">ks</span><span class="o">=</span>hd:sda1:/ks.cfg noipv6
 </code></pre>
-<p><img src="images/iENBox/isolinux.png" alt="Image" /></p>
-
-<ul>
-<li>修改 USB 內 <font color=blue>ks.cfg</font></li>
-</ul>
-<pre class="highlight shell tab-shell"><code>    <span class="nv">blacks</span><span class="o">=</span><span class="s2">"loop0 sda"</span>
-    harddrive --partition<span class="o">=</span>/dev/sda1 --dir<span class="o">=</span>/
-    mount /dev/sda1 /mnt
-</code></pre>
-<p><img src="images/iENBox/ks.png" alt="Image" /></p>
-
-<ul>
-<li>以 USB 開機安裝，會跳出 kickstart 錯誤，將 <font color=blue>hd:sda1:/ks.cfg</font> 改為 <font color=blue>hd:sdb1:/ks.cfg </font>，即可繼續完成安裝</li>
-</ul>
-
-<p><img src="images/iENBox/kickstart.png" alt="Image" /></p>
-
       </div>
       <div class="dark-box">
       </div>
