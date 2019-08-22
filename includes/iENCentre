@@ -69,6 +69,30 @@ log4j.appender.ien.layout.ConversionPattern<span class="o">=[</span>%d<span clas
 <aside class="warning">
 設定完須將 MSSQL 服務重啟，再將 iENCentre 服務重啟
 </aside>  
+<h2 id='simplesolar'>太陽能平台免登網址 (SimpleSolar)</h2>
+<p>免登網址： https://ien.com.tw/portal/solar/solarRealtimeInfoReport.action?simpleSolar=true&amp;buildingId=<font color=blue>buildingId</font></p>
+
+<p>查詢 <code>buildingId</code> 方法： 在電站總覽，點選欲查詢的電站名稱，</p>
+
+<p>從左下角訊息列的 <font color=blue>javascript: querySolarRealtimeInfoReport()</font>，查詢到相對應的電站編號</p>
+
+<p><img src="/images/iENCentre/buildingId.png" alt="Image" /></p>
+<h2 id='customreport'>自訂報表設定 (CustomReport)</h2>
+<p>若欲在 iENCentre 設定自訂報表選單，可以執行連結的 SQL 檔案</p>
+
+<p>執行 SQL 指令後，重新登入即可從 報表選單 看到 自訂報表 ，連結： <a href="http://bit.ly/2NnP1AM" target="_blank">
+自訂報表.sql</a></p>
+<h2 id='functionmanage'>選單管理設定 (functionManage)</h2>
+<p>若在新版 iENCentre 沒有顯示 選單管理頁面，可以執行連結的 SQL 檔案</p>
+
+<p>執行 SQL 指令後，重新登入即可看到 選單管理，連結： <a href="http://bit.ly/2MuzxLC" target="_blank">
+選單管理權限.sql</a></p>
+<h2 id='ienbox-disconnect-retry'>設定 iENBox 斷線重試次數 (Disconnect Retry)</h2>
+<p>經常性收到 iENBox 斷線事件單告警，其原因為網路不穩定或者 4G 網路較易發生 handoff 狀況</p>
+
+<p>建議將 <code>Disconnect Retry</code> 次數調長，降低斷線事件單告警次數</p>
+
+<p><img src="/images/iENCentre/retry.png" alt="Image" /></p>
 <h2 id='iencentre-voice-notify'>iENCentre 語音告警設定 (Voice Notify)</h2>
 <p>需將告警事件單的 <font color=blue><strong>事件等級事件嚴重程度</strong></font> 設定為重要以上階級，才能收到語音告警</p>
 
@@ -78,15 +102,11 @@ log4j.appender.ien.layout.ConversionPattern<span class="o">=[</span>%d<span clas
 <h2 id='edge-computing'>Edge Computing (邊緣計算) 設定</h2>
 <p>需要修改 iENCentre 與 iENBox 參數設定，<a href="https://docs.google.com/document/d/1yk3dYvlHknvMeqRwsHxMFqblRAKBpOALbgp690yXjTA" target="_blank">Edge Computing設定(Google Doc)</a>，供參考</p>
 
-<ol>
-<li>勾選控制伺服器的 <code>Edge Computing</code> ，使平台不再做 ETL 計算</li>
-</ol>
+<p>1.勾選控制伺服器的 <code>Edge Computing</code> ，使平台不再做 ETL 計算</p>
 
 <p><img src="/images/iENCentre/edge_ien.png" alt="Image" /></p>
 
-<ol>
-<li>設定 iENBox <code>FOG_COMPUTING_ENABLE</code> 為 <font color=blue>TRUE</font></li>
-</ol>
+<p>2.設定 iENBox <code>FOG_COMPUTING_ENABLE</code> 為 <font color=blue>TRUE</font></p>
 
 <p><img src="/images/iENCentre/edge_box.png" alt="Image" /></p>
 

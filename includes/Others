@@ -1,9 +1,9 @@
 <h1 id='others'>Others</h1><h2 id='ienbox-webservice'>iENBox WebService 服務不正常運作</h2>
 <p>iENBox 有機率性服務開啟會失敗，以致於卡在網頁都是 404 狀態，通常重開機能解決</p>
 
-<p>先前有針對此問題做改善，但仍有一定機率會發生</p>
+<p>原因為亂數效能關係，先前有針對此問題做改善，但仍有一定機率會發生</p>
 
-<p>透過 <code>wget</code> 判斷 iENBox WebService 有無開啟成功，若 WebService 抓取失敗，將 iENBox 砍掉重啟</p>
+<p>透過 <code>wget</code> 判斷 iENBox WebService 有無開啟成功，若 WebService 抓取失敗為服務沒有正常開啟，將 iENBox 程序砍掉重啟</p>
 <pre class="highlight shell tab-shell"><code>    <span class="c">#!/bin/bash</span>
     <span class="k">while</span> <span class="o">[</span> TRUE <span class="o">]</span>
     <span class="k">do
