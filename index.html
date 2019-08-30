@@ -254,6 +254,9 @@
                     <a href="#ienbox-ienbox-ienbox-protocol" class="toc-h2 toc-link" data-title="iENBox 納管其他 iENBox (iENBox Protocol)">iENBox 納管其他 iENBox (iENBox Protocol)</a>
                   </li>
                   <li>
+                    <a href="#ienbox-iot" class="toc-h2 toc-link" data-title="iENBox 上拋 IoT 大平台設定">iENBox 上拋 IoT 大平台設定</a>
+                  </li>
+                  <li>
                     <a href="#ienbox-6" class="toc-h2 toc-link" data-title="iENBox 事件單消化不良">iENBox 事件單消化不良</a>
                   </li>
                   <li>
@@ -278,6 +281,9 @@
                   </li>
                   <li>
                     <a href="#iencentre-2" class="toc-h2 toc-link" data-title="更換 iENCentre 資料庫使用者帳密">更換 iENCentre 資料庫使用者帳密</a>
+                  </li>
+                  <li>
+                    <a href="#troubleshooting" class="toc-h2 toc-link" data-title="告警事件單無觸發 (Troubleshooting)">告警事件單無觸發 (Troubleshooting)</a>
                   </li>
                   <li>
                     <a href="#simplesolar" class="toc-h2 toc-link" data-title="太陽能平台免登網址 (SimpleSolar)">太陽能平台免登網址 (SimpleSolar)</a>
@@ -782,6 +788,21 @@ You can use <code>modInverter.jar -h</code> for help.
 </ol>
 
 <p><img src="images/iENBox/addIENBox.png" alt="Image" /></p>
+<h2 id='ienbox-iot'>iENBox 上拋 IoT 大平台設定</h2>
+<p>在 iENBox 將相關參數做設定，即可上拋回 IoT 大平台，參考連結：<a href="https://drive.google.com/open?id=1_sFtWw1dj8ie3wwc9DTf1NdhubgvL2Am" target="_blank">iOT平台上拋設定</a></p>
+
+<ul>
+<li><p>IOT_ENABLE： 是否啟用 IoT 上拋功能</p></li>
+<li><p>IOT_API_KEY： 填入專案的 API_KEY</p></li>
+<li><p>IOT_HOST： 預設為 CHT IoT 平台，有需要可以更改為其他平台</p></li>
+<li><p>IOT_RESTFUL_PORT：預設為 80 ，可視實際狀態做更動</p></li>
+</ul>
+
+<p><img src="images/iENBox/IoT.png" alt="Image" /></p>
+
+<aside class="notice">
+若是將資料上拋回 中華 IoT 大平台，<code>IOT_HOST</code>、<code>IOT_RESTFUL_PORT</code>基本上不需要做額外更動
+</aside> 
 <h2 id='ienbox-6'>iENBox 事件單消化不良</h2>
 <p>此為簡訊有延遲告警的情形，原因是 iENBox 產生過多的事件單，以致於事件單需要排隊消化</p>
 
@@ -981,6 +1002,24 @@ log4j.appender.ien.layout.ConversionPattern<span class="o">=[</span>%d<span clas
 <aside class="warning">
 設定完須將 MSSQL 服務重啟，再將 iENCentre 服務重啟
 </aside>  
+<h2 id='troubleshooting'>告警事件單無觸發 (Troubleshooting)</h2>
+<p>請先確認 iENBox 是否有觸發事件，並作上拋事件單的動作</p>
+
+<p><code>Remaining Capacity in Queue</code> 為 iENBox 目前事件單排隊的數量</p>
+
+<p>此值越大，表示產生的事件單需等待前面的事件單消化完，才會被上拋至平台</p>
+
+<p><img src="images/iENCentre/eventlog.png" alt="Image" /></p>
+
+<p>查看 iENBox Log 均為正常的話，但仍舊無法在平台查詢到事件單</p>
+
+<p>確認 <font color=blue>事件單時間過濾</font> 是否有打勾，若無打勾仍收不到平台告警事件單，建議請 TL 協助幫忙</p>
+
+<p><img src="images/iENCentre/filter.png" alt="Image" /></p>
+
+<aside class="notice">
+查看上拋事件單LOG，iENBox 需設為 <font color=red>Debug </font>模式，可以參考上述 <font color=blue>iENBox環境</font> 說明設定為 Debug 模式
+</aside> 
 <h2 id='simplesolar'>太陽能平台免登網址 (SimpleSolar)</h2>
 <p>免登網址： https://ien.com.tw/portal/solar/solarRealtimeInfoReport.action?simpleSolar=true&amp;buildingId=<font color=blue>buildingId</font></p>
 

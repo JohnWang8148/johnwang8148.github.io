@@ -267,6 +267,21 @@
 </ol>
 
 <p><img src="/images/iENBox/addIENBox.png" alt="Image" /></p>
+<h2 id='ienbox-iot'>iENBox 上拋 IoT 大平台設定</h2>
+<p>在 iENBox 將相關參數做設定，即可上拋回 IoT 大平台，參考連結：<a href="https://drive.google.com/open?id=1_sFtWw1dj8ie3wwc9DTf1NdhubgvL2Am" target="_blank">iOT平台上拋設定</a></p>
+
+<ul>
+<li><p>IOT_ENABLE： 是否啟用 IoT 上拋功能</p></li>
+<li><p>IOT_API_KEY： 填入專案的 API_KEY</p></li>
+<li><p>IOT_HOST： 預設為 CHT IoT 平台，有需要可以更改為其他平台</p></li>
+<li><p>IOT_RESTFUL_PORT：預設為 80 ，可視實際狀態做更動</p></li>
+</ul>
+
+<p><img src="/images/iENBox/IoT.png" alt="Image" /></p>
+
+<aside class="notice">
+若是將資料上拋回 中華 IoT 大平台，<code>IOT_HOST</code>、<code>IOT_RESTFUL_PORT</code>基本上不需要做額外更動
+</aside> 
 <h2 id='ienbox-6'>iENBox 事件單消化不良</h2>
 <p>此為簡訊有延遲告警的情形，原因是 iENBox 產生過多的事件單，以致於事件單需要排隊消化</p>
 

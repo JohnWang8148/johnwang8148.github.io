@@ -69,6 +69,24 @@ log4j.appender.ien.layout.ConversionPattern<span class="o">=[</span>%d<span clas
 <aside class="warning">
 設定完須將 MSSQL 服務重啟，再將 iENCentre 服務重啟
 </aside>  
+<h2 id='troubleshooting'>告警事件單無觸發 (Troubleshooting)</h2>
+<p>請先確認 iENBox 是否有觸發事件，並作上拋事件單的動作</p>
+
+<p><code>Remaining Capacity in Queue</code> 為 iENBox 目前事件單排隊的數量</p>
+
+<p>此值越大，表示產生的事件單需等待前面的事件單消化完，才會被上拋至平台</p>
+
+<p><img src="/images/iENCentre/eventlog.png" alt="Image" /></p>
+
+<p>查看 iENBox Log 均為正常的話，但仍舊無法在平台查詢到事件單</p>
+
+<p>確認 <font color=blue>事件單時間過濾</font> 是否有打勾，若無打勾仍收不到平台告警事件單，建議請 TL 協助幫忙</p>
+
+<p><img src="/images/iENCentre/filter.png" alt="Image" /></p>
+
+<aside class="notice">
+查看上拋事件單LOG，iENBox 需設為 <font color=red>Debug </font>模式，可以參考上述 <font color=blue>iENBox環境</font> 說明設定為 Debug 模式
+</aside> 
 <h2 id='simplesolar'>太陽能平台免登網址 (SimpleSolar)</h2>
 <p>免登網址： https://ien.com.tw/portal/solar/solarRealtimeInfoReport.action?simpleSolar=true&amp;buildingId=<font color=blue>buildingId</font></p>
 
