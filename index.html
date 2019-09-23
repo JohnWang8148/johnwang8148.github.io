@@ -2,6 +2,11 @@
 <!doctype html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>iEN 維運手冊</title>
+    <link rel="Shortcut Icon" type="image/x-icon" href="images/logo.png" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148138372-1"></script>
     <script>
@@ -11,11 +16,6 @@
 
       gtag('config', 'UA-148138372-1');
     </script>
-    <meta charset="utf-8">
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>iEN 維運手冊</title>
-    <link rel="Shortcut Icon" type="image/x-icon" href="images/logo.png" />
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -245,19 +245,22 @@
                     <a href="#ienbox-2" class="toc-h2 toc-link" data-title="iENBox 環境">iENBox 環境</a>
                   </li>
                   <li>
+                    <a href="#ienbox-3" class="toc-h2 toc-link" data-title="iENBox 參數說明">iENBox 參數說明</a>
+                  </li>
+                  <li>
                     <a href="#ienbox-service" class="toc-h2 toc-link" data-title="停用iENBox Service">停用iENBox Service</a>
                   </li>
                   <li>
                     <a href="#restore-ienbox" class="toc-h2 toc-link" data-title="同步異常處理 (Restore iENBox)">同步異常處理 (Restore iENBox)</a>
                   </li>
                   <li>
-                    <a href="#ienbox-3" class="toc-h2 toc-link" data-title="iENBox 時間校正">iENBox 時間校正</a>
+                    <a href="#ienbox-4" class="toc-h2 toc-link" data-title="iENBox 時間校正">iENBox 時間校正</a>
                   </li>
                   <li>
                     <a href="#ienbox-litebox" class="toc-h2 toc-link" data-title="iENBox / Litebox 定時重開機">iENBox / Litebox 定時重開機</a>
                   </li>
                   <li>
-                    <a href="#ienbox-4" class="toc-h2 toc-link" data-title="iENBox 設備點位無法讀取">iENBox 設備點位無法讀取</a>
+                    <a href="#ienbox-5" class="toc-h2 toc-link" data-title="iENBox 設備點位無法讀取">iENBox 設備點位無法讀取</a>
                   </li>
                   <li>
                     <a href="#ienbox-ienbox-ienbox-protocol" class="toc-h2 toc-link" data-title="iENBox 納管其他 iENBox (iENBox Protocol)">iENBox 納管其他 iENBox (iENBox Protocol)</a>
@@ -266,13 +269,13 @@
                     <a href="#ienbox-iot" class="toc-h2 toc-link" data-title="iENBox 上拋 IoT 大平台設定">iENBox 上拋 IoT 大平台設定</a>
                   </li>
                   <li>
-                    <a href="#ienbox-6" class="toc-h2 toc-link" data-title="iENBox 事件單消化不良">iENBox 事件單消化不良</a>
+                    <a href="#ienbox-7" class="toc-h2 toc-link" data-title="iENBox 事件單消化不良">iENBox 事件單消化不良</a>
                   </li>
                   <li>
                     <a href="#mqtt-broker" class="toc-h2 toc-link" data-title="MQTT Broker 狀態確認">MQTT Broker 狀態確認</a>
                   </li>
                   <li>
-                    <a href="#ienbox-7" class="toc-h2 toc-link" data-title="iENBox 升級包及更新">iENBox 升級包及更新</a>
+                    <a href="#ienbox-8" class="toc-h2 toc-link" data-title="iENBox 升級包及更新">iENBox 升級包及更新</a>
                   </li>
                   <li>
                     <a href="#firmware-upgrade" class="toc-h2 toc-link" data-title="Firmware Upgrade">Firmware Upgrade</a>
@@ -637,6 +640,34 @@ You can use <code>modInverter.jar -h</code> for help.
 </ul>
 
 <p><img src="images/iENBox/parameter.png" alt="Image" /></p>
+<h2 id='ienbox-3'>iENBox 參數說明</h2>
+<p>承上述參數說明，這邊僅稍微描述參數用途，可依其他障礙處理去做設定，了解細節設定的差別性</p>
+
+<ul>
+<li><p>IENBOX_TIMEZONE： 設定 iENBox 時區 (預設是 +8:00 UTC)</p></li>
+<li><p>IENBOX_MQTT_ENABLE： 啟用 iENBox MQTT 同步納管功能 (預設是 False)</p></li>
+<li><p>IENBOX_MQTT_URL_FORMAT： MQTT 連線的 IP (預設是 tcp://mqtt.ien.net.tw:1883)</p></li>
+<li><p>DRIVER_RETRY_LIMIT： 詢問設備異常時，嘗試詢問的次數</p></li>
+<li><p>DRIVER_RETRY_INTERVAL： 控制器詢問監控點失敗後，間隔多久時間後再做詢問的動作</p></li>
+<li><p>DRIVER_TAG_ERROR_LIMIT： 連續 X 點詢問失敗後，就不再詢問後面的監控點</p></li>
+<li><p>DRIVER_MODBUS_VALIDATE_WRITTEN： 確保 iEN 平台 AO 點的寫入</p></li>
+<li><p>JAMOD_READ_DELAY_MS： 詢問一個監控點所能花費的時間</p></li>
+<li><p>JAMOD_SEND_DELAY_MS： 問完一個監控點後，再詢問下一個監控點所花費的時間</p></li>
+<li><p>CACHE_EXPIRACY_TIME： iEN 平台資料的暫存時間</p></li>
+<li><p>CACHE_FEEDER_WORST_CREDIT： iENBox 逞罰時間，當詢問失敗次數越高後，間隔時間會拉長</p></li>
+<li><p>CACHE_FEEDER_INTERVAL： 每個控制器之間，間隔多久時間後再作詢問動作</p></li>
+<li><p>SEND_NOTIFY_TIMER_INTERVAL： 事件單保存空間</p></li>
+<li><p>SEND_NOTIFY_BUFFER_SIZE： 間隔多久發送事件單</p></li>
+<li><p>IOT_ENABLE： 啟用上拋 IoT 平台功能</p></li>
+<li><p>IOT_API_KEY： IoT 平台的 API KEY</p></li>
+<li><p>IOT_HOST： IoT 平台的 IP</p></li>
+<li><p>IOT_RESTFUL_PORT： IoT 平台的 PORT</p></li>
+<li><p>IOT_SILENCE_ENABLE： 若 iENBox 會從 IoT 平台抓取資料，並再將資料轉拋回 IoT 平台，此參數需設為 True</p></li>
+<li><p>IENBOX_REBOOT_ENABLED： 啟用 iENBox 重開機功能</p></li>
+<li><p>IENBOX_REBOOT_CRON： 設定 iENBox 重開機時間</p></li>
+<li><p>DRIVER_KARAFUTO_TIMEOUT： IoT 平台的資料 timeout，e.g., 設 60 分鐘，表示 IoT 平台資料超過 60 分鐘，視為 N/A</p></li>
+<li><p>FOG_COMPUTING_ENABLE： 設定 Edge Computing 功能</p></li>
+</ul>
 <h2 id='ienbox-service'>停用iENBox Service</h2>
 <p>說明 iENBox 停用的方式，在測試設備通訊時候使用，避免通訊埠打架</p>
 <h3 id='windows-ienbox'>Windows iENBox</h3>
@@ -717,7 +748,7 @@ You can use <code>modInverter.jar -h</code> for help.
 <p>若一直顯示同步中，建議將 iENBox 版本更新至最新後，再同步一次</p>
 
 <p>原因為可能 iENBox 版本過舊，導致 iENCentre 新版本新增的功能有所衝突</p>
-<h2 id='ienbox-3'>iENBox 時間校正</h2>
+<h2 id='ienbox-4'>iENBox 時間校正</h2>
 <p>從 iEN 平台同步，即可將 iENBox 時間做校時，惟須確認 iENBox 重開機後時間是否會跑掉</p>
 
 <p>若重開機後時間會跑掉，建議同步 iENBox 後，確認目前 iENBox 時間是正確的</p>
@@ -769,7 +800,7 @@ You can use <code>modInverter.jar -h</code> for help.
 <p><img src="images/iENBox/rebootiENBox.png" alt="Image" /></p>
 
 <p><img src="images/Litebox/rebootLiteBox.png" alt="Image" /></p>
-<h2 id='ienbox-4'>iENBox 設備點位無法讀取</h2>
+<h2 id='ienbox-5'>iENBox 設備點位無法讀取</h2>
 <p>此問題為設備通訊不穩定，可以加終端電阻，或換通訊線來改善</p>
 
 <p>另外也能透過調整 <font color=blue>timeout</font> 、 <font color=blue>polling time</font>，提升 iENBox 詢問設備的成功率/</p>
@@ -783,7 +814,7 @@ You can use <code>modInverter.jar -h</code> for help.
 <p>預設輪詢時間是 50ms，連線逾時是 500ms，輪詢時間建議最長到 <font color=blue>100ms ~ 200ms</font>，而連線逾時最長則是 <font color=blue>5s ~ 7s</font></p>
 
 <p><img src="images/iENBox/device.png" alt="Image" /></p>
-<h3 id='ienbox-5'>iENBox 設定</h3>
+<h3 id='ienbox-6'>iENBox 設定</h3>
 <p>主要是調整 <code>JAMOD_SEND_DELAY_MS</code> 、 <code>JAMOD_READ_DELAY_MS</code> 這兩個參數</p>
 
 <p>這邊就針對 iENCentre 設定作說明，不再論述 iENBox，細節參考 <a href="https://hoyuisun.github.io/#ienbox-2">iENBox 環境</a> 的常用 iENBox 參數說明</p>
@@ -812,7 +843,7 @@ You can use <code>modInverter.jar -h</code> for help.
 <aside class="notice">
 若是將資料上拋回 中華 IoT 大平台，<code>IOT_HOST</code>、<code>IOT_RESTFUL_PORT</code>基本上不需要做額外更動
 </aside> 
-<h2 id='ienbox-6'>iENBox 事件單消化不良</h2>
+<h2 id='ienbox-7'>iENBox 事件單消化不良</h2>
 <p>此為簡訊有延遲告警的情形，原因是 iENBox 產生過多的事件單，以致於事件單需要排隊消化</p>
 
 <p>然而，當事件單成功上傳至平台才會發簡訊告警，但這個事件單先前就已經產生出來，並在 iENBox 排隊</p>
@@ -850,7 +881,7 @@ You can use <code>modInverter.jar -h</code> for help.
 <p>可以看到回應 Message: Gino，有回應成功，表示 MQTT Broker 是正常運作的</p>
 
 <p><img src="images/iENBox/publishsubscribe.png" alt="Image" /></p>
-<h2 id='ienbox-7'>iENBox 升級包及更新</h2>
+<h2 id='ienbox-8'>iENBox 升級包及更新</h2>
 <p>講述 iENBox 升級包如何產生，以及如何將案場的 iENBox 做更新</p>
 <h3 id='a2f059e7a9'>升級包製作</h3>
 <p>此升級包需要 iENBox 版號對應才能更新，例如： iENBox_1.24.15-1.26.3</p>
