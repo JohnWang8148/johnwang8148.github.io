@@ -579,7 +579,7 @@ You can use <code>modInverter.jar -h</code> for help.
 <li><p>Log： iENBox運作紀錄 (e.g., MQTT連線、IEN平台連線等異常紀錄)</p></li>
 <li><p>Config： 在 Maintenance 設定的結果，會儲存在 <code>PROPRIETARY.PROPERTIES</code> 檔案</p>
 
-<p>若有需要看詳細的 iENBox Log 資訊，可以將 <code>LOG.PROPERTIES</code> 作下列修改<font color=blue> (擇一方式)</font>：</p></li>
+<p>若有需要看詳細的 iENBox Log 資訊，可以將 <code>LOG.PROPERTIES</code> 作下列修改<font color=blue> (擇一方式)</font>，可參考<a href="https://drive.google.com/open?id=1SW1iQCChDK9E344xlR5i_GJC6xQIeRSMmIERfSItshk" target="_blank">開啟 iENBox Log 設定</a>：</p></li>
 </ul>
 
 <p>1. log4j.logger.IENBOX.MSG=<font color=red>INFO</font>, IENBOXFileAppender</p>
@@ -861,6 +861,11 @@ You can use <code>modInverter.jar -h</code> for help.
 </ul>
 
 <p><img src="images/iENBox/event.png" alt="Image" /></p>
+
+<aside class="warning">
+若是採用 <code>Public IP</code> 納管，切記須將 <code>MQTT Enable</code> 設為 <code>False</code>，
+否則無法將事件單上傳至平台
+</aside> 
 <h2 id='mqtt-broker'>MQTT Broker 狀態確認</h2>
 <p>若發生 iEN 平台斷線、無法同步等情況，需要確定 MQTT 服務是否正常運作，參考： <a href="https://docs.google.com/document/d/1xli3lcqkSH1JfjuzV5Zac5lHzTcbhyuAaS5twoUmYbI" target="_blank">確認MQTT Broker狀態</a></p>
 
