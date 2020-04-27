@@ -333,6 +333,18 @@
 若是採用 <code>Public IP</code> 納管，切記須將 <code>MQTT Enable</code> 設為 <code>False</code>，
 否則無法將事件單上傳至平台
 </aside> 
+<h2 id='ienbox-4511'>iENBox 4511 頁面卡住</h2>
+<p>此問題發生於 <code>iENBox-1.24.15</code> 版本上，為亂數效能的關係，後採購版本均安裝 <code>iENBox-1.25.7</code> 已有修正此現象</p>
+
+<p>其解決方法將 iENBox 資料夾的 <font color = blue>env.sh</font> 檔案進行蓋檔即可，下載連結：<a href="https://bit.ly/3bFfIKw" target="_blank">env.sh</a></p>
+
+<p>1.利用 WinSCP / FileZilla 將 env.sh 上傳至 iENBox (預設為: /media/sd/home/cht)</p>
+
+<p>2.將檔案複製到 iENBox 資料夾內，位置: /opt/ienbox/core/bin</p>
+
+<ul>
+<li>執行此指令： <font color = blue >cp /media/sd/home/cht/env.sh /opt/ienbox/core/bin </font></li>
+</ul>
 <h2 id='mqtt-broker'>MQTT Broker 狀態確認</h2>
 <p>若發生 iEN 平台斷線、無法同步等情況，需要確定 MQTT 服務是否正常運作，參考： <a href="https://docs.google.com/document/d/1xli3lcqkSH1JfjuzV5Zac5lHzTcbhyuAaS5twoUmYbI" target="_blank">確認MQTT Broker狀態</a></p>
 
