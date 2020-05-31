@@ -12,7 +12,7 @@
 
 <p>若案場是<font color=blue>固定IP</font>，可以透過平台的 <font color=blue><strong>控制伺服器維運</strong></font> 進入 iENBox Webservice 作重啟 iENBox 動作，如下圖</p>
 
-<p><img src="/images/iENCentre/restart.png" alt="Image" /></p>
+<p><img src="/images/iENCentre/restart-93c51e15.png" alt="Image" /></p>
 <h3 id='firewall-rules'>Firewall Rules</h3>
 <p>確認 iENBox 對 iEN 平台的 8080 port 是有連通的</p>
 
@@ -23,7 +23,7 @@
 
 <p>若網路有連通，但不能下載 MiddlewareMSH，表示平台有問題，可以確認平台 Middleware 狀態</p>
 
-<p><img src="/images/iENCentre/middleware.png" alt="Image" /></p>
+<p><img src="/images/iENCentre/middleware-16babe25.png" alt="Image" /></p>
 <h3 id='dns-server'>DNS Server</h3>
 <p>嘗試上述方式都不行的話，建議修改 iEN 平台 <font color=blue><strong>主要平台訊息接收URL</strong></font> 內容</p>
 
@@ -42,7 +42,7 @@
 <p>位置: webapps/portal/WEB-INF/log4j.properties</p>
 
 <p>將前10行換成下面這些之後儲存重啟服務，應能產生 ien.log</p>
-<pre class="highlight shell tab-shell"><code>log4j.rootLogger<span class="o">=</span>INFO, ien
+<div class="highlight"><pre class="highlight shell tab-shell"><code>log4j.rootLogger<span class="o">=</span>INFO, ien
 
 log4j.logger.ien<span class="o">=</span>INFO, ien
 log4j.appender.ien<span class="o">=</span>org.apache.log4j.RollingFileAppender
@@ -52,10 +52,10 @@ log4j.appender.ien.MaxFileSize<span class="o">=</span>10MB
 log4j.appender.ien.MaxBackupIndex<span class="o">=</span>5
 log4j.appender.ien.layout<span class="o">=</span>org.apache.log4j.PatternLayout
 log4j.appender.ien.layout.ConversionPattern<span class="o">=[</span>%d<span class="o">{</span>MM/dd HH:mm:ss<span class="o">}]</span> %5p <span class="o">(</span>%C<span class="o">{</span>1<span class="o">}</span>:%L<span class="o">)</span> - %m%n
-</code></pre>
+</code></pre></div>
 <p>沒產生 ien.log 前的設定畫面，可以發現 rootLogger 設為 OFF</p>
 
-<p><img src="/images/iENCentre/log.png" alt="Image" /></p>
+<p><img src="/images/iENCentre/log-b1a4527a.png" alt="Image" /></p>
 <h2 id='iencentre-2'>更換 iENCentre 資料庫使用者帳密</h2>
 <p>修改下列兩個檔案，將 <code>database.user</code> 、 <code>database.password</code> 替換欲修改的帳密</p>
 
@@ -64,7 +64,7 @@ log4j.appender.ien.layout.ConversionPattern<span class="o">=[</span>%d<span clas
 <li><p>portal.properties:   \webapps\portal\WEB-INF\portal.properties</p></li>
 </ol>
 
-<p><img src="/images/iENCentre/db.png" alt="Image" /></p>
+<p><img src="/images/iENCentre/db-69142fe5.png" alt="Image" /></p>
 
 <aside class="warning">
 設定完須將 MSSQL 服務重啟，再將 iENCentre 服務重啟
@@ -76,13 +76,13 @@ log4j.appender.ien.layout.ConversionPattern<span class="o">=[</span>%d<span clas
 
 <p>此值越大，表示產生的事件單需等待前面的事件單消化完，才會被上拋至平台</p>
 
-<p><img src="/images/iENCentre/eventlog.png" alt="Image" /></p>
+<p><img src="/images/iENCentre/eventlog-6f452863.png" alt="Image" /></p>
 
 <p>查看 iENBox Log 均為正常的話，但仍舊無法在平台查詢到事件單</p>
 
 <p>確認 <font color=blue>事件單時間過濾</font> 是否有打勾，若無打勾仍收不到平台告警事件單，建議請 TL 協助幫忙</p>
 
-<p><img src="/images/iENCentre/filter.png" alt="Image" /></p>
+<p><img src="/images/iENCentre/filter-dc3e8258.png" alt="Image" /></p>
 
 <aside class="notice">
 查看上拋事件單LOG，iENBox 需設為 <font color=red>Debug </font>模式，可以參考上述 <font color=blue>iENBox環境</font> 說明設定為 Debug 模式
@@ -94,7 +94,7 @@ log4j.appender.ien.layout.ConversionPattern<span class="o">=[</span>%d<span clas
 
 <p>從左下角訊息列的 <font color=blue>javascript: querySolarRealtimeInfoReport()</font>，查詢到相對應的電站編號</p>
 
-<p><img src="/images/iENCentre/buildingId.png" alt="Image" /></p>
+<p><img src="/images/iENCentre/buildingId-933e0580.png" alt="Image" /></p>
 <h2 id='customreport'>自訂報表設定 (CustomReport)</h2>
 <p>若欲在 iENCentre 設定自訂報表選單，可以執行連結的 SQL 檔案</p>
 
@@ -110,23 +110,23 @@ log4j.appender.ien.layout.ConversionPattern<span class="o">=[</span>%d<span clas
 
 <p>建議將 <code>Disconnect Retry</code> 次數調長，降低斷線事件單告警次數</p>
 
-<p><img src="/images/iENCentre/retry.png" alt="Image" /></p>
+<p><img src="/images/iENCentre/retry-3587bd4f.png" alt="Image" /></p>
 <h2 id='iencentre-voice-notify'>iENCentre 語音告警設定 (Voice Notify)</h2>
 <p>需將告警事件單的 <font color=blue><strong>事件等級事件嚴重程度</strong></font> 設定為重要以上階級，才能收到語音告警</p>
 
 <p>將等級程度設為 <font color=red>緊急</font> 、 <font color=red>警戒</font> 、 <font color=red>重要</font> 以上</p>
 
-<p><img src="/images/iENCentre/voice.png" alt="Image" /></p>
+<p><img src="/images/iENCentre/voice-7b1cb01c.png" alt="Image" /></p>
 <h2 id='edge-computing'>Edge Computing (邊緣計算) 設定</h2>
 <p>需要修改 iENCentre 與 iENBox 參數設定，<a href="https://docs.google.com/document/d/1yk3dYvlHknvMeqRwsHxMFqblRAKBpOALbgp690yXjTA" target="_blank">Edge Computing設定(Google Doc)</a>，供參考</p>
 
 <p>1.勾選控制伺服器的 <code>Edge Computing</code> ，使平台不再做 ETL 計算</p>
 
-<p><img src="/images/iENCentre/edge_ien.png" alt="Image" /></p>
+<p><img src="/images/iENCentre/edge_ien-16e1a961.png" alt="Image" /></p>
 
 <p>2.設定 iENBox <code>FOG_COMPUTING_ENABLE</code> 為 <font color=blue>TRUE</font></p>
 
-<p><img src="/images/iENCentre/edge_box.png" alt="Image" /></p>
+<p><img src="/images/iENCentre/edge_box-dd92d72d.png" alt="Image" /></p>
 
 <aside class="notice">
 iENBox 版本須為 1.27.1 才能使用 Edge Computing 功能

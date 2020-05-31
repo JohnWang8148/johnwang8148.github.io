@@ -16,7 +16,7 @@
 
 <p>4.編譯與建置 (iENPortal)</p>
 
-<p><img src="/images/iENPortal/environment.png" alt="Image" /></p>
+<p><img src="/images/iENPortal/environment-7da64f2e.png" alt="Image" /></p>
 <h3 id='ienportal-database'>iENPortal Database</h3>
 <p>安裝完 SQL Server ，得先對 iENPortal Database 環境做設定，才能將 iENPortal 資料寫入 SQL DB</p>
 
@@ -32,11 +32,11 @@
 
 <p>1.在 iENPortal 的資料夾中，執行 ant 指令，開始編譯</p>
 
-<p><img src="/images/iENPortal/ant.png" alt="Image" /></p>
+<p><img src="/images/iENPortal/ant-0bf7cd98.png" alt="Image" /></p>
 
 <p>2.於 iENPortal/ant/war 的資料夾，產生 portal.war 檔案</p>
 
-<p><img src="/images/iENPortal/war.png" alt="Image" /></p>
+<p><img src="/images/iENPortal/war-ec052729.png" alt="Image" /></p>
 <h3 id='ienportal-3'>執行 iENPortal</h3>
 <ol>
 <li><p>將 portal.war 檔案，複製在 iENCentre\apache-tomcat-7\webapps\portal 資料夾中</p></li>
@@ -44,11 +44,11 @@
 <li><p>執行 start.bat 即可開啟 iENCentre 服務</p></li>
 </ol>
 
-<p><img src="/images/iENPortal/start.png" alt="Image" /></p>
+<p><img src="/images/iENPortal/start-f87d0228.png" alt="Image" /></p>
 
 <p>P.S. 執行 start.bat 後會跳出一視窗，若看到紅框表示 iENCentre 執行完畢，可輸入 http://127.0.0.1:8080/portal，確認 iEN 是否有成功執行</p>
 
-<p><img src="/images/iENPortal/run.png" alt="Image" /></p>
+<p><img src="/images/iENPortal/run-9533aaaa.png" alt="Image" /></p>
 <h2 id='ienportal-4'>iENPortal 基本說明</h2>
 <p>說明較為常用修改的地方，基本上 iENPortal 很廣泛，有興趣可一個個翻來看</p>
 
@@ -60,13 +60,13 @@
 
 <p>以太陽能平台來說，相關名稱定義均在 <code>solar_zh_TW.properties</code> 檔案中</p>
 
-<p><img src="/images/iENPortal/i18n.png" alt="Image" /> </p>
+<p><img src="/images/iENPortal/i18n-62fbca75.png" alt="Image" /> </p>
 
 <p>透過此方式，日後若要做文字上的變更，就不用每個頁面都做修改，僅修改 i18n 設定檔，均可套用在各頁面上</p>
 
 <p>下圖紅框，表示為套用 i18n 設定，舉例: <font color=blue>I18N.siteInfoSetting.CHTOSS</font>，網頁呈現顯示 <font color=blue>CHT 定期派工</font></p>
 
-<p><img src="/images/iENPortal/name.png" alt="Image" /> </p>
+<p><img src="/images/iENPortal/name-a6fa2232.png" alt="Image" /> </p>
 <h3 id='delivery'>delivery (信件範本)</h3>
 <p>此為存放 iENPortal Email 報表寄送功能範本，以路燈派工來說，透過 iENPortal 寄送的範本為此資料夾的 LedErrorMail_zh_TW 檔案</p>
 
@@ -74,7 +74,7 @@
 
 <p>位置: iENPortal\WebContent\WEB-INF\delivery</p>
 
-<p><img src="/images/iENPortal/delivery.png" alt="Image" /> </p>
+<p><img src="/images/iENPortal/delivery-879121e5.png" alt="Image" /> </p>
 <h3 id='struts-mvc'>Struts (MVC)</h3>
 <p>這邊我理解是 MVC 架構，即一個 Java class 會對應到 Java Server Page</p>
 
@@ -92,7 +92,7 @@
 
 <p>可以在 JSP 呼叫 actionName 來執行 Java 中的程式 (即前端跟後端互相配合的概念)</p>
 
-<p><img src="/images/iENPortal/air.png" alt="Image" /></p>
+<p><img src="/images/iENPortal/air-2defa7aa.png" alt="Image" /></p>
 <h3 id='ienportal-5'>查看 iENPortal 原始碼位置</h3>
 <p>在 iEN 平台上點選相關功能管理，例如控制伺服器管理，那麼可以看到IP: <code>https://ien.com.tw/portal/system/controllerServerManage.action</code></p>
 
@@ -100,7 +100,7 @@
 
 <p>因此，控制伺服器管理程式位置: iENPortal\src\com\chttl\ienc\portal\action\system\ControllerServerManageAction.java</p>
 
-<p><img src="/images/iENPortal/source.png" alt="Image" /></p>
+<p><img src="/images/iENPortal/source-ecd61ed8.png" alt="Image" /></p>
 <h2 id='ienportal-6'>iENPortal 派工</h2>
 <p>iEN 派工均都用 <code>Activiti Framework</code> ，可以參考 <a href="https://www.activiti.org/userguide/" target="_blank">Activiti Guide</a></p>
 
@@ -116,7 +116,7 @@
 
 <p>而 Workflow 相關資料會存放在 Database 中的 ienc_workflow 資料庫中</p>
 
-<p><img src="/images/iENPortal/bpmn.png" alt="Image" /></p>
+<p><img src="/images/iENPortal/bpmn-edead057.png" alt="Image" /></p>
 <h3 id='chtdispatchingservice'>CHTDispatchingService (太陽能派工)</h3>
 <p>從 workflow\service 可看到 <code>CHTDispatchingService</code> 及 <code>CHTDispatchingServiceImpl</code> 檔案，分別表示為 Interface 跟 Implementation </p>
 
@@ -130,22 +130,22 @@
 
 <p>可以從 <code>propertiesSetToTicket</code> function 看 ticket 有哪些 properties 欄位</p>
 
-<p><img src="/images/iENPortal/create.png" alt="Image" /></p>
+<p><img src="/images/iENPortal/create-99f82ee9.png" alt="Image" /></p>
 
 <p>接著流程會跑到 startProcess，這個步驟會產生 taskId 後，發出派工單</p>
 
 <p>簡單說明，會產生 processInstance 後，建立一個 task，將產生的 taskId 存放回去 properties，後續就可以透過 <code>TaskService</code> 來查詢派工單</p>
-<pre class="highlight java tab-java"><code>    <span class="n">RuntimeService</span> <span class="n">runtimeService</span> <span class="o">=</span> <span class="n">ServiceConstants</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">"runtimeService"</span><span class="o">,</span> <span class="n">RuntimeService</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-    <span class="n">ProcessInstance</span> <span class="n">p</span> <span class="o">=</span> <span class="n">runtimeService</span><span class="o">.</span><span class="na">startProcessInstanceByKey</span><span class="o">(</span><span class="n">CHTDispatchingDef</span><span class="o">.</span><span class="na">NAME</span><span class="o">,</span> <span class="n">properties</span><span class="o">);</span>   
+<div class="highlight"><pre class="highlight java tab-java"><code>    <span class="nc">RuntimeService</span> <span class="n">runtimeService</span> <span class="o">=</span> <span class="nc">ServiceConstants</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">"runtimeService"</span><span class="o">,</span> <span class="nc">RuntimeService</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="nc">ProcessInstance</span> <span class="n">p</span> <span class="o">=</span> <span class="n">runtimeService</span><span class="o">.</span><span class="na">startProcessInstanceByKey</span><span class="o">(</span><span class="nc">CHTDispatchingDef</span><span class="o">.</span><span class="na">NAME</span><span class="o">,</span> <span class="n">properties</span><span class="o">);</span>   
 
     <span class="c1">// add necessary properties</span>
-    <span class="n">HistoryService</span> <span class="n">historyService</span> <span class="o">=</span> <span class="n">ServiceConstants</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">"historyService"</span><span class="o">,</span> <span class="n">HistoryService</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-    <span class="n">HistoricProcessInstance</span> <span class="n">hpInst</span> <span class="o">=</span> <span class="n">historyService</span><span class="o">.</span><span class="na">createHistoricProcessInstanceQuery</span><span class="o">().</span><span class="na">processInstanceId</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">getId</span><span class="o">()).</span><span class="na">singleResult</span><span class="o">();</span>
-    <span class="n">TaskService</span> <span class="n">taskService</span> <span class="o">=</span> <span class="n">ServiceConstants</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">"taskService"</span><span class="o">,</span> <span class="n">TaskService</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>   
-    <span class="n">Task</span> <span class="n">task</span> <span class="o">=</span> <span class="n">taskService</span><span class="o">.</span><span class="na">createTaskQuery</span><span class="o">().</span><span class="na">processInstanceId</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">getId</span><span class="o">()).</span><span class="na">singleResult</span><span class="o">();</span>
+    <span class="nc">HistoryService</span> <span class="n">historyService</span> <span class="o">=</span> <span class="nc">ServiceConstants</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">"historyService"</span><span class="o">,</span> <span class="nc">HistoryService</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="nc">HistoricProcessInstance</span> <span class="n">hpInst</span> <span class="o">=</span> <span class="n">historyService</span><span class="o">.</span><span class="na">createHistoricProcessInstanceQuery</span><span class="o">().</span><span class="na">processInstanceId</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">getId</span><span class="o">()).</span><span class="na">singleResult</span><span class="o">();</span>
+    <span class="nc">TaskService</span> <span class="n">taskService</span> <span class="o">=</span> <span class="nc">ServiceConstants</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">"taskService"</span><span class="o">,</span> <span class="nc">TaskService</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>   
+    <span class="nc">Task</span> <span class="n">task</span> <span class="o">=</span> <span class="n">taskService</span><span class="o">.</span><span class="na">createTaskQuery</span><span class="o">().</span><span class="na">processInstanceId</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">getId</span><span class="o">()).</span><span class="na">singleResult</span><span class="o">();</span>
 
     <span class="n">runtimeService</span><span class="o">.</span><span class="na">setVariables</span><span class="o">(</span><span class="n">task</span><span class="o">.</span><span class="na">getProcessInstanceId</span><span class="o">(),</span> <span class="n">properties</span><span class="o">);</span>
-</code></pre>
+</code></pre></div>
 <p>如圖紅框所示，產生一個 process，並產生 taskId，作為 Database 查詢所用，後續可以拿這個 taskId，撈相關派工單資訊出來</p>
 
-<p><img src="/images/iENPortal/startProcess.png" alt="Image" /></p>
+<p><img src="/images/iENPortal/startProcess-2ea22a1c.png" alt="Image" /></p>

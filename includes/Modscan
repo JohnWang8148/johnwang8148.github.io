@@ -8,9 +8,9 @@
 <p>此方式僅用在標準 Modbus protocol 設備上</p>
 
 <p>If you have any interests in Modbus protocol, take a look <a href="https://www.modbustools.com/modbus.html" target="_blank">Modbus Protocol</a>.</p>
-<pre class="highlight shell tab-shell"><code>    <span class="nb">cd</span> /opt/ienbox/core/bin
-    java -Djava.library.path<span class="o">=</span>../lib -jar modtool.jar -m rtu -b 9600 -d 8 -s 1 -p none -a 1 -r 100 -c 1 -t 4 -i /dev/ttyS1
-</code></pre>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>    <span class="nb">cd</span> /opt/ienbox/core/bin
+    java <span class="nt">-Djava</span>.library.path<span class="o">=</span>../lib <span class="nt">-jar</span> modtool.jar <span class="nt">-m</span> rtu <span class="nt">-b</span> 9600 <span class="nt">-d</span> 8 <span class="nt">-s</span> 1 <span class="nt">-p</span> none <span class="nt">-a</span> 1 <span class="nt">-r</span> 100 <span class="nt">-c</span> 1 <span class="nt">-t</span> 4 <span class="nt">-i</span> /dev/ttyS1
+</code></pre></div>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -73,7 +73,7 @@
 
 <p>執行結果如下圖：</p>
 
-<p><img src="/images/Modscan/modtool.png" alt="Image" /></p>
+<p><img src="/images/Modscan/modtool-c0f0ccc8.png" alt="Image" /></p>
 
 <aside class="notice">
 You can use <code>modtool.jar -h</code> for help.
@@ -87,11 +87,11 @@ You can use <code>modtool.jar -h</code> for help.
 </ul>
 
 <p>參考： <a href="http://bit.ly/2QN8DAq" target="_blank">modInverter使用說明</a></p>
-<pre class="highlight shell tab-shell"><code>    <span class="c">### Kaco Inverter Sample (SlaveId = 1)</span>
-    java -Djava.library.path<span class="o">=</span>../lib -jar modInverter.jar -m kaco -a 1 -i /dev/ttyS1
+<div class="highlight"><pre class="highlight shell tab-shell"><code>    <span class="c">### Kaco Inverter Sample (SlaveId = 1)</span>
+    java <span class="nt">-Djava</span>.library.path<span class="o">=</span>../lib <span class="nt">-jar</span> modInverter.jar <span class="nt">-m</span> kaco <span class="nt">-a</span> 1 <span class="nt">-i</span> /dev/ttyS1
     <span class="c">### Motech Inverter Sample (SlaveId = 1 ... 10)</span>
-    java -Djava.library.path<span class="o">=</span>../lib -jar modInverter.jar -m motech --ms 1 --me 10 -i /dev/ttyS1
-</code></pre>
+    java <span class="nt">-Djava</span>.library.path<span class="o">=</span>../lib <span class="nt">-jar</span> modInverter.jar <span class="nt">-m</span> motech <span class="nt">--ms</span> 1 <span class="nt">--me</span> 10 <span class="nt">-i</span> /dev/ttyS1
+</code></pre></div>
 <table><thead>
 <tr>
 <th>Parameter</th>
